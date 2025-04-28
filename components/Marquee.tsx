@@ -11,15 +11,15 @@ export default function Marquee() {
         animate={{ x: ["0%", "-50%"] }}
         transition={{ repeat: Number.POSITIVE_INFINITY, ease: "linear", duration: 20 }}
       >
-        {[...Array(4)].map((_, index) => (
+        {[...Array(6)].map((_, index) => (
           <div key={index} className="flex items-center mx-4">
             <span
-              className="text-7xl sm:text-8xl md:text-9xl font-bold text-transparent px-4"
+              className="text-7xl sm:text-8xl uppercase md:text-9xl font-bold text-red-400 px-4"
               style={{
                 WebkitTextStroke: "1px rgb(156 163 175)", // tailwind gray-400
               }}
             >
-              PROYECTO MIIC PANAMA. -
+              proyecto miic panamá. -
             </span>
           </div>
         ))}

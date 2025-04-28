@@ -7,6 +7,8 @@ import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import { ThemeProvider } from "next-themes"
 
+
+
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
@@ -14,11 +16,14 @@ export const metadata = {
   description: "Apple-inspired design portfolio",
 }
 
+type TChild = {
+  readonly children: React.ReactNode
+}
+
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode
-}) {
+}: TChild) {
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} min-h-screen bg-background text-foreground`}>
@@ -26,7 +31,7 @@ export default function RootLayout({
           <div className=" sticky top-0 z-50 border-b-1 ">
             <Header />
           </div>
-          <main>{children}</main>
+          <main className="min-h-screen">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>

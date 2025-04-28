@@ -24,3 +24,12 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.bg-general {
+  background-image: url('/head.gif');
+
+}
+
+.bg-nav {
+  background-image: url('/back.svg');
+}
