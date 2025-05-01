@@ -1,14 +1,15 @@
 "use server"
 
+import { ResponseSchema } from "@/src"
 import { cache } from "react"
 type TRes =
-{
-	pPrincipal: string,
- 	objPrincipal: string,
-    	titulo: string,
-    	hipotesis: string,
-    	hipotesis_nula: string
-}
+    {
+        Pprincipal: string,
+        objPrincipal: string,
+        titulo: string,
+        hipotesis: string,
+        hipotesis_nula: string
+    }
 type Tdata = {
     success: TRes[],
     error: string[]
@@ -25,21 +26,33 @@ export default async function generateInfoAction(prevState: Tdata, formData: For
     const req = await fetch(url, {
         method: "POST",
         headers: {
-            "content-type" : "application/json"
+            "content-type": "application/json"
         },
-        body: JSON.stringify(data)})
+        body: JSON.stringify(data)
+    })
 
     const json = await req.json()
-    
-    console.log(json)
-    if (!req.ok){
+
+    const validate = ResponseSchema.safeParse(json)
+    if (!req.ok) {
         return {
             success: [],
             error: [json]
         }
     }
-    return {
-            success: [json],
-            error: []
+
+    if (!validate.success) {
+        const error = validate.error.errors.map(error=> error.message)
+        return {
+            error,
+            success: []
+
         }
     }
+
+   
+    return {
+        success: [validate.data],
+        error: []
+    }
+}
