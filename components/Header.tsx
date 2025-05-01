@@ -18,7 +18,7 @@ export default function Header() {
 
   return (
     <motion.header
-      className={`bg-nav backdrop-blur-md`}
+      className={`backdrop-blur-md`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}

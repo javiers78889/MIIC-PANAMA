@@ -29,6 +29,7 @@ export default function RootLayout({
       <body className={`${inter.className} min-h-screen bg-background text-foreground`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className=" sticky top-0 z-50 border-b-1 ">
+            <ToastContainer
             <Header />
           </div>
           <main className="min-h-screen">{children}</main>
