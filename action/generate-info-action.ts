@@ -1,21 +1,12 @@
 "use server"
 
 import { ResponseSchema } from "@/src"
-import { cache } from "react"
-type TRes =
-    {
-        Pprincipal: string,
-        objPrincipal: string,
-        titulo: string,
-        hipotesis: string,
-        hipotesis_nula: string
-    }
 type Tdata = {
-    success: TRes[],
+    success: string,
     error: string[]
 }
 export default async function generateInfoAction(prevState: Tdata, formData: FormData) {
-    const url = "https://miic-panama-backf.onrender.com/generate/"
+    const url = "http://localhost:3001/generate/"
     const data = {
         causa: formData.get("causa"),
         problema: formData.get("problema"),
@@ -32,27 +23,28 @@ export default async function generateInfoAction(prevState: Tdata, formData: For
     })
 
     const json = await req.json()
+    console.log(json)
 
-    const validate = ResponseSchema.safeParse(json)
     if (!req.ok) {
         return {
-            success: [],
-            error: [json]
+            success: "",
+            error: ["Token agotados"]
         }
     }
+    const validate = ResponseSchema.safeParse(json)
 
     if (!validate.success) {
-        const error = validate.error.errors.map(error=> error.message)
+      
         return {
-            error,
-            success: []
+            error: ["Token agotados"],
+            success: ""
 
         }
     }
 
    
     return {
-        success: [validate.data],
+        success: validate.data.pPrincipal,
         error: []
     }
 }

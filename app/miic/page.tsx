@@ -13,7 +13,7 @@ import { toast } from "react-toastify"
 
 
 export default function TextGenerator() {
-  const [state, dispatch] = useActionState(generateInfoAction, { success: [], error: [] })
+  const [state, dispatch] = useActionState(generateInfoAction, { success: "", error: [] })
   useEffect(() => {
 
     if (state.error) {
@@ -33,6 +33,7 @@ export default function TextGenerator() {
         <div>
           <Card className="p-6 border-none shadow-none">
             <form className="space-y-4 flex flex-col gap-8" action={dispatch}>
+             
               <div className="space-y-2">
                 <Label htmlFor="title">¿CUÁL ES EL PROBLEMA O EFECTO?</Label>
                 <Input name='problema' className='bg-white dark:text-black' id="title" placeholder="Ejemplo: Desempleo" required/>
@@ -71,16 +72,12 @@ export default function TextGenerator() {
                 {state.success.length ? (
                   <div className="flex flex-col gap-2 ">
                     <h1 className="font-bold text-xl">Pregunta Principal</h1>
-                    <div className="animate-fade-in">{state.success[0].Pprincipal}</div>
-                    <h1 className="font-bold text-xl">Objetivo General</h1>
-                    <div className="animate-fade-in">{state.success[0].objPrincipal}</div>
-                    <h1 className="font-bold text-xl">Titulo</h1>
-                    <div className="animate-fade-in">{state.success[0].titulo}</div>
-                    <h1 className="font-bold text-xl">Hipotesis</h1>
-                    <div className="animate-fade-in">{state.success[0].hipotesis}</div>
-                    <h1 className="font-bold text-xl">Hipostesis Nula</h1>
-                    <div className="animate-fade-in">{state.success[0].hipotesis_nula}</div>
-
+                    <div className="animate-fade-in">
+                      <p>{state.success}</p>
+                      
+                      
+                      </div>
+                   
                   </div>
                 ) : (
                   <div className="text-muted-foreground text-center h-full flex items-center justify-center">
