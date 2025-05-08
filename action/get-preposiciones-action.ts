@@ -1,0 +1,50 @@
+
+
+const preposiciones = {
+    Afecta : "Indica que una variable tiene un impacto negativo o positivo sobre otra",
+    Influye : "Expresa una acción que altera o modifica otra cosa",
+    Incide : "Señala un efecto directo sobre algo específico",
+    Repercute : "Denota consecuencias indirectas o secundarias",
+    Impacta : "Indica un efecto fuerte o significativo",
+    Relaciona : "Une dos elementos con algún tipo de vínculo",
+    Asocia : "Conecta conceptos por coincidencia o co-ocurrencia",
+    Vincula : "Establece una relación directa entre dos variables",
+    Depende : "Muestra subordinación o necesidad de una variable respecto a otra",
+    Determina : "Señala que una variable define o fija el valor o comportamiento de otra",
+    Condiciona : "Indica que una variable impone límites o requisitos sobre otra",
+    Provoca : "Causa un cambio, efecto o reacción",
+    Genera : "Produce un resultado o consecuencia",
+    Origina : "Señala el punto de partida o causa de un fenómeno",
+    Produce : "Da lugar a un efecto observable",
+    Resulta : "Expresa una consecuencia o desenlace",
+    Deriva : "Indica que algo se obtiene o se origina de otra cosa",
+    Conduce : "Muestra una dirección o consecuencia hacia algo",
+    Contribuye : "Aporta a la formación o desarrollo de un resultado",
+    Aporta : "Da un elemento que forma parte de un todo",
+    Estimula : "Fomenta o activa una respuesta o proceso",
+    Impulsa : "Promueve o acelera una acción o cambio",
+    Mejora : "Indica un cambio positivo o favorable",
+    Disminuye : "Reduce la cantidad, intensidad o frecuencia de algo",
+    Obstaculiza : "Dificulta o impide el logro de un objetivo",
+    Aumenta : "Incrementa la magnitud o frecuencia de algo",
+    Reduce : "Disminuye en cantidad o intensidad",
+    Facilita : "Hace más sencillo o accesible un proceso",
+    Promueve : "Incentiva o favorece una acción o resultado",
+    Refuerza : "Fortalece un efecto o comportamiento",
+    Modifica : "Cambia parcial o totalmente una variable",
+    Regula : "Controla o ajusta el funcionamiento de algo",
+    Controla : "Impone límites o maneja un fenómeno",
+    Potencia : "Incrementa la capacidad o eficacia de algo",
+    Influencia : "Forma sustantivada de “influir”; denota capacidad de alterar",
+    Explica : "Da razón o justificación de un fenómeno",
+    Sustenta : "Apoya o da base teórica a una afirmación o proceso",
+    Establece : "Fija relaciones, principios o conexiones",
+    Limita : "Restringe o reduce la posibilidad de acción",
+    Justifica : "Fundamenta o respalda una acción, hipótesis o resultado",
+    
+}
+
+export const preposicionesArray = Object.entries(preposiciones).map(([key, value]) => ({
+    palabra: key,
+    descripcion: value
+  }));

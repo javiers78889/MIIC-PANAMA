@@ -6,12 +6,15 @@ type Tdata = {
     error: string[]
 }
 export default async function generateInfoAction(prevState: Tdata, formData: FormData) {
-    const url = "http://localhost:3001/generate/"
+    const url = "https://miic-panama-backf.onrender.com/generate/"
     const data = {
         causa: formData.get("causa"),
         problema: formData.get("problema"),
         sujeto: formData.get("sujeto"),
         contexto: formData.get("contexto"),
+        verbo: formData.get("verbo"),
+        preposicion: formData.get("preposicion"),
+        interrogante: formData.get("interrogante"),
     }
     console.log(data)
     const req = await fetch(url, {
@@ -31,20 +34,13 @@ export default async function generateInfoAction(prevState: Tdata, formData: For
             error: ["Token agotados"]
         }
     }
-    const validate = ResponseSchema.safeParse(json)
+    
 
-    if (!validate.success) {
-      
-        return {
-            error: ["Token agotados"],
-            success: ""
-
-        }
-    }
+   
 
    
     return {
-        success: validate.data.pPrincipal,
+        success: json,
         error: []
     }
 }
