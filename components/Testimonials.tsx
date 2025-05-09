@@ -6,7 +6,7 @@ import Image from "next/image"
 const testimonials = [
   {
     quote:
-      "CreativeAgency transformed our brand's digital presence. Their innovative approach and attention to detail exceeded our expectations.",
+      "",
     author: "Jane Doe",
     position: "CEO, TechCorp",
     image: "/placeholder.svg?height=100&width=100",
@@ -48,7 +48,7 @@ export default function Testimonials() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
             >
-              <p className="text-gray-300 mb-4">"{testimonial.quote}"</p>
+              <p className="text-gray-300 mb-4">{testimonial.quote}</p>
               <div className="flex items-center">
                 <Image
                   src={testimonial.image || "/placeholder.svg"}
