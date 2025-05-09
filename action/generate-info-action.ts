@@ -1,6 +1,5 @@
 "use server"
 
-import { ResponseSchema } from "@/src"
 type Tdata = {
     success: string,
     error: string[]
