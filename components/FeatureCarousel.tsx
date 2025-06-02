@@ -5,22 +5,22 @@ import Image from "next/image"
 const features = [
   {
     title: "Dr. Raúl Archibold, Ph.D.",
-    description: "Clean aesthetics that put your content in the spotlight.",
+    description: " Doctor en Educación con énfasis en Investigación. ",
     icon: "/raul.jpg",
   },
   {
     title: "Ing. Javier Solis",
-    description: "Flawless experiences across all devices and screen sizes.",
+    description: "Licenciado en Ing. de Sistemas & Computación.",
     icon: "/javier.jpg",
   },
   {
     title: "Ing. Jesús Carreiro",
-    description: "Lightning-quick load times for smooth user interactions.",
+    description: "Licenciado en Ing. de Sistemas & Computación.",
     icon: "/jesus.jpg",
   },
   {
     title: "Ing. Héctor Degracia",
-    description: "Lightning-quick load times for smooth user interactions.",
+    description: "Licenciado en Ing. de Sistemas con énfasis en construcción de aplicaciones",
     icon: "/hector.jpeg",
   },
 ]
