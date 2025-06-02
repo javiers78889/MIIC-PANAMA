@@ -41,8 +41,6 @@ export default function Hero() {
           >
             <Link
               href="/miic"
-              target="_blank"
-              rel="noopener noreferrer"
               className="group text-white font-black transition-all duration-500 "
             >
               <span className="inline-block  bg-red-500  rounded-full p-4 animate-bounce group-hover:animate-none transition-transform duration-500">
