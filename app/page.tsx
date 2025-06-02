@@ -8,7 +8,7 @@ import Timeline from "@/components/Timeline";
 export default function Home() {
   return (
     <>
-      <Hero />ç
+      <Hero />
       <Marquee />
       <Timeline />
       <CloudinaryVideoCarousel/>
