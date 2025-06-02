@@ -26,8 +26,9 @@ body {
 }
 
 .bg-general {
-  background-image: url('/fondoo.gif');
-
+  background-image: url('/fonfo.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 
