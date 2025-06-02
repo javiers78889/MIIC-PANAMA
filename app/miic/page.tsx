@@ -2,14 +2,13 @@
 
 import React from "react"
 
-import { useActionState, useEffect, useState } from "react"
+import { useActionState, useState } from "react"
 import { Card } from "@/components/ui/card"
 
 import generateInfoAction from "@/action/generate-info-action"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { toast } from "react-toastify"
 import { preposicionesArray } from "@/action/get-preposiciones-action"
 import { verbosArray } from "@/action/get-verbos-action"
 import { interrogantesArray } from "@/action/get-interrogantes-action"

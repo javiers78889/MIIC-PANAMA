@@ -53,30 +53,7 @@ export default function CloudinaryVideoCarousel() {
     const [currentIndex, setCurrentIndex] = useState(0)
     const videoRefs = useRef<{ [key: string]: HTMLVideoElement | null }>({})
 
-    const playCurrentVideo = () => {
-        const currentSlide = slides[currentIndex]
-        const videoElement = videoRefs.current[currentSlide.id]
 
-        // Pausar todos los videos
-        Object.values(videoRefs.current).forEach((video) => {
-            if (video) video.pause()
-        })
-
-        // Reproducir el video actual
-        if (videoElement) {
-            try {
-                // Algunos navegadores móviles no permiten cambiar el tiempo
-                videoElement.currentTime = 0
-            } catch (e) {
-                console.warn("No se pudo reiniciar el video:", e)
-            }
-            videoElement
-                .play()
-                .catch((error) => {
-                    console.error("Error al reproducir el video:", error)
-                })
-        }
-    }
 
     useEffect(() => {
         const timer = setTimeout(() => {
