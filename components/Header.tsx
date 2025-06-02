@@ -23,23 +23,24 @@ export default function Header() {
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between py-3 px-6 lg:px-8" aria-label="Global">
+      <nav className="mx-auto flex max-w-7xl gap-2 items-center justify-between py-3 px-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5">
 
             <Logo size={12} />
           </Link>
         </div>
-        <div className="flex items-center gap-x-12">
+        <div className="lg:flex items-center lg:visible hidden   gap-x-12">
           {router !== '/' ? ('') : (
             <NavBarDashItem />
           )}
 
-          <NavFunctionButton ref={botonFun} name={botonName} />
+
 
 
 
         </div>
+        <NavFunctionButton ref={botonFun} name={botonName} />
 
       </nav>
     </motion.header>

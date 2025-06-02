@@ -24,7 +24,7 @@ export default function NavBarDashItem() {
                 href="#SobreNosotros"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-bold leading-6 text-black hover:text-primary transition-colors hover:animate-bounce"
+                className="text-sm font-bold leading-6 text-black hover:text-primary transition-colors hover:animate-bounce pl-1"
             >
                 Sobre Nosotros
             </Link>

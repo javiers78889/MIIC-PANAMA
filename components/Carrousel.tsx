@@ -147,7 +147,8 @@ export default function CloudinaryVideoCarousel() {
                                             const video = event.currentTarget as HTMLVideoElement
 
                                             video.play()
-                                            
+                                           
+
                                         }}
                                     />
                                     {/* Título estilo YouTube */}
