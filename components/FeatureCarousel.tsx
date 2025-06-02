@@ -1,7 +1,5 @@
 "use client"
 
-import { useRef, useEffect, useState } from "react"
-import { motion, useAnimation, useMotionValue } from "framer-motion"
 import Image from "next/image"
 
 const features = [
