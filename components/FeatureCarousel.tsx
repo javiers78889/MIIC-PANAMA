@@ -2,94 +2,68 @@
 
 import { useRef, useEffect, useState } from "react"
 import { motion, useAnimation, useMotionValue } from "framer-motion"
+import Image from "next/image"
 
 const features = [
   {
-    title: "Minimal Design",
+    title: "Raúl Archibold",
     description: "Clean aesthetics that put your content in the spotlight.",
-    icon: "✨",
+    icon: "/raul.jpg",
   },
   {
-    title: "Responsive",
+    title: "Javier Solis",
     description: "Flawless experiences across all devices and screen sizes.",
-    icon: "📱",
+    icon: "/javier.jpg",
   },
   {
-    title: "Fast Performance",
+    title: "Jesús Carreiro",
     description: "Lightning-quick load times for smooth user interactions.",
-    icon: "⚡",
+    icon: "/jesus.jpg",
   },
   {
-    title: "Accessibility",
-    description: "Inclusive design practices for all users.",
-    icon: "🌈",
-  },
-  {
-    title: "SEO Optimized",
-    description: "Built to help your site rank higher in search results.",
-    icon: "🔍",
+    title: "Héctor Degracia",
+    description: "Lightning-quick load times for smooth user interactions.",
+    icon: "/hector.jpeg",
   },
 ]
 
+
 export default function FeatureCarousel() {
-  const [width, setWidth] = useState(0)
-  const carousel = useRef<HTMLDivElement>(null)
-  const x = useMotionValue(0)
-  const controls = useAnimation()
-
-  useEffect(() => {
-    if (carousel.current) {
-      setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth)
-    }
-  }, [])
-
-  const handleDragEnd = () => {
-    const currentX = x.get()
-    if (currentX > 0) {
-      controls.start({ x: 0, transition: { type: "spring", stiffness: 300, damping: 30 } })
-    } else if (currentX < -width) {
-      controls.start({ x: -width, transition: { type: "spring", stiffness: 300, damping: 30 } })
-    }
-  }
-
   return (
-    <div className="py-20 bg-gradient-to-b from-background to-secondary/20">
+    <div className="bg-cyan-200 py-20 bg-gradient-to-b from-background to-secondary/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-center mb-12 text-foreground">Why Choose Us</h2>
-        <motion.div ref={carousel} className="cursor-grab overflow-hidden">
-          <motion.div
-            drag="x"
-            dragConstraints={{ right: 0, left: -width }}
-            whileTap={{ cursor: "grabbing" }}
-            animate={controls}
-            style={{ x }}
-            onDragEnd={handleDragEnd}
-            className="flex"
-          >
+        <h2 className="text-3xl font-bold text-center mb-12 text-foreground">Sobre Nosotros</h2>
+
+        <div className="cursor-grab overflow-hidden">
+          <div className="flex w-full justify-center lg:flex-row flex-col gap-6">
             {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                className="min-w-[300px] h-[400px] p-8 m-4 bg-background rounded-3xl shadow-lg flex flex-col justify-between hover-lift transition-all duration-300 ease-in-out border-2 border-transparent hover:border-primary/10"
-              >
-                <div>
-                  <div className="text-4xl mb-4">{feature.icon}</div>
-                  <h3 className="text-xl font-semibold mb-2 text-foreground">{feature.title}</h3>
-                  <p className="text-muted-foreground">{feature.description}</p>
+              <div key={index} className="group relative flex flex-col items-center w-full max-w-sm">
+                {/* Imagen */}
+                <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden shadow-lg">
+                  <Image
+                    src={feature.icon}
+                    alt={feature.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+
+                  {/* Capa oscura encima de la imagen */}
+                  <div className="absolute inset-0 bg-black/10 z-10" />
+
+                  {/* Título blanco, siempre visible */}
+                  <div className="absolute bottom-4 w-full text-center z-20">
+                    <h3 className="text-white text-2xl font-bold">{feature.title}</h3>
+                  </div>
                 </div>
-                <div className="mt-4">
-                  <a
-                    href="https://www.flowersandsaints.com.au"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary hover:underline"
-                  >
-                    Learn more →
-                  </a>
+
+                {/* Descripción que aparece al hacer hover */}
+                <div className="mt-4 w-full text-center opacity-0 translate-y-4 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
+                  <p className="text-muted-foreground text-sm md:text-base">{feature.description}</p>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </div>
   )

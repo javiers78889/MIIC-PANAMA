@@ -79,33 +79,33 @@ export default function TextGenerator() {
     }, [state])
 
     return (
-      <div className="container mx-auto py-8 w-full">
-        <h1 className="mb-6 text-2xl font-bold text-center">Generador de Texto</h1>
+      <div className="bg-amber-50 container mx-auto py-8 w-full">
+        <h1 className="mt-6 mb-14 text-4xl font-bold text-center">Formulación de elementos para el protocolo de tesis según la Metodología Invertida para la Investigación (MIIC)</h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Form on the left */}
           <div>
             <Card className="p-6 border-none shadow-none">
-              <form className="space-y-4 flex flex-col gap-8" action={dispatch}>
+              <form className="space-y-0 flex flex-col gap-8" action={dispatch}>
 
                 <div className="space-y-1">
                   <Label htmlFor="title">¿CUÁL ES EL PROBLEMA O EFECTO?</Label>
-                  <Input name='problema' className='bg-white dark:text-black' id="title" placeholder="Ejemplo: Desempleo" required />
+                  <Input name='problema' className='bg-white dark:text-black w-full p-3 px-5 my-2 border-1 border-gray-300 focus:border-gray-700 outline-none transition duration-500' id="title" placeholder="Ejemplo: Desempleo" required />
                 </div>
 
                 <div className="space-y-1">
                   <Label htmlFor="title">¿CUÁL ES UNA POSIBLE CAUSA?</Label>
-                  <Input name='causa' className='bg-white dark:text-black' id="title" placeholder="Ejemplo: Experiencia laboral" required />
+                  <Input name='causa' className='bg-white dark:text-black w-full p-3 px-5 my-2 border-1 border-gray-300 focus:border-gray-700 outline-none transition duration-500' id="title" placeholder="Ejemplo: Experiencia laboral" required />
                 </div>
 
                 <div className="space-y-1">
                   <Label htmlFor="title">¿CUÁL ES EL SUJETO DE ESTUDIO?</Label>
-                  <Input name='sujeto' className='bg-white dark:text-black' id="title" placeholder="Ejemplo: Estudiantes" required />
+                  <Input name='sujeto' className='bg-white dark:text-black w-full p-3 px-5 my-2 border-1 border-gray-300 focus:border-gray-700 outline-none transition duration-500' id="title" placeholder="Ejemplo: Estudiantes" required />
                 </div>
 
                 <div className="space-y-1">
                   <Label htmlFor="title">¿CUÁL ES EL CONTEXTO DONDE SE DESARROLLARÁ LA INVESTIGACIÓN?</Label>
-                  <Input name='contexto' className='bg-white dark:text-black' id="title" placeholder="Ejemplo: ISAE Universidad" required />
+                  <Input name='contexto' className='bg-white dark:text-black w-full p-3 px-5 my-2 border-1 border-gray-300 focus:border-gray-700 outline-none transition duration-500' id="title" placeholder="Ejemplo: ISAE Universidad" required />
                 </div>
 
                 
@@ -115,13 +115,13 @@ export default function TextGenerator() {
 
                   <div className="relative">
                   {/* Etiqueta del input */}
-                  <label htmlFor="interrogante" className="block mb-1 font-semibold">
+                  <label htmlFor="interrogante" className="block mb-1 font-semibold ">
                     ESCRIBA O SELECCIONE LA INTERROGANTE A UTILIZAR:
                   </label>
 
                   {/* Input para seleccionar la preposición */}
                   <input
-                    className="bg-white dark:text-black border-2 rounded-lg py-2 px-2 w-full"
+                    className="bg-white dark:text-black rounded-lg py-1 w-full p-2 px-5 my-2 border-1 border-gray-300 focus:border-gray-700 outline-none transition duration-500"
                     name="interrogante"
                     value={value3}
                     onChange={handleChange3} // Llama a handleChange cuando el usuario escribe
@@ -132,7 +132,7 @@ export default function TextGenerator() {
 
                   {/* Muestra las sugerencias cuando showSuggestions es true */}
                   {showSuggestions3 && (
-                    <ul className="absolute z-10 bg-white border mt-1 rounded-lg max-h-48 overflow-auto w-full shadow">
+                    <ul className="absolute z-20 bg-white border border-gray-300 mt-1 rounded-lg max-h-92 overflow-auto w-full shadow-lg">
                       {interrogantesArray
                         .filter((item) =>
                           item.palabra.toLowerCase().includes(value3.toLowerCase()) // Filtra las sugerencias basadas en lo que el usuario escribe
@@ -163,7 +163,7 @@ export default function TextGenerator() {
 
                   {/* Input para seleccionar la preposición */}
                   <input
-                    className="bg-white dark:text-black border-2 rounded-lg py-2 px-2 w-full"
+                    className="bg-white dark:text-black rounded-lg py-1 w-full p-2 px-5 my-2 border-1 border-gray-300 focus:border-gray-700 outline-none transition duration-500"
                     name="verbo"
                     value={value2}
                     onChange={handleChange2} // Llama a handleChange cuando el usuario escribe
@@ -174,7 +174,7 @@ export default function TextGenerator() {
 
                   {/* Muestra las sugerencias cuando showSuggestions es true */}
                   {showSuggestions2 && (
-                    <ul className="absolute z-10 bg-white border mt-1 rounded-lg max-h-48 overflow-auto w-full shadow">
+                    <ul className="absolute z-20 bg-white border border-gray-300 mt-1 rounded-lg max-h-92 overflow-auto w-full shadow-lg">
                       {verbosArray
                         .filter((item) =>
                           item.palabra.toLowerCase().includes(value2.toLowerCase()) // Filtra las sugerencias basadas en lo que el usuario escribe
@@ -207,7 +207,7 @@ export default function TextGenerator() {
 
                   {/* Input para seleccionar la preposición */}
                   <input
-                    className="bg-white dark:text-black border-2 rounded-lg py-2 px-2 w-full"
+                    className="bg-white dark:text-black rounded-lg py-1 w-full p-2 px-5 my-2 border-1 border-gray-300 focus:border-gray-700 outline-none transition duration-500"
                     name="preposicion"
                     value={value}
                     onChange={handleChange} // Llama a handleChange cuando el usuario escribe
@@ -218,7 +218,7 @@ export default function TextGenerator() {
 
                   {/* Muestra las sugerencias cuando showSuggestions es true */}
                   {showSuggestions && (
-                    <ul className="absolute z-10 bg-white border mt-1 rounded-lg max-h-48 overflow-auto w-full shadow">
+                    <ul className="absolute z-20 bg-white border border-gray-300 mt-1 rounded-lg max-h-92 overflow-auto w-full shadow-lg">
                       {preposicionesArray
                         .filter((item) =>
                           item.palabra.toLowerCase().includes(value.toLowerCase()) // Filtra las sugerencias basadas en lo que el usuario escribe
@@ -240,24 +240,33 @@ export default function TextGenerator() {
 
 
 
+                                                                             {/*LBOTON DE ENVIO*/}
 
-
-
-
-                <Button type="submit" className="w-full bg-amber-400 hover:bg-amber-500 cursor-pointer uppercase font-bold text-white text-lg " >
-                  Generar Texto
+                <Button type="submit" className="relative overflow-hidden px-6 py-3 rounded-lg
+                                                bg-white text-indigo-600 border-2 border-indigo-500
+                                                transition-all duration-170 ease-in-out
+                                                active:scale-95
+                                                before:content-[''] before:absolute before:inset-0
+                                                before:bg-indigo-500 before:scale-y-0 before:origin-bottom
+                                                hover:before:scale-y-100
+                                                before:transition-transform before:duration-230 before:ease-in-out
+                                                before:z-0
+                                                z-10
+                                                hover:text-white">
+                  <span className="relative z-10">Obtener Resultado</span>
                 </Button>
 
               </form>
             </Card>
           </div>
 
+
           {/* Display box on the right */}
           <div>
-            <Card className="p-6 h-full border-0 lg:border-l-1 shadow-none rounded-none  ">
+            <Card className="p-6 h-full border-0 lg:border-l-1 shadow-none rounded-none ">
               <div className="space-y-2">
-                <h2 className="text-xl font-semibold">Texto Generado</h2>
-                <div className="border rounded-md p-4 min-h-[300px] bg-muted/30 overflow-y-auto h-110">
+                <h2 className="pb-5 text-xl text-center font-semibold">Formulación de elementos para el protocolo de tesis según la Metodología Invertida para la Investigación (MIIC)</h2>
+                <div className="bg-white border rounded-md p-4 min-h-[300px] bg-muted/30 overflow-y-auto h-170">
                   {state.success.length ? (
                     <div className="flex flex-col gap-2 ">
                       <h1 className="font-bold text-xl">Pregunta Principal</h1>
@@ -275,7 +284,7 @@ export default function TextGenerator() {
                     </div>
                   ) : (
                     <div className="text-muted-foreground text-center h-full flex items-center justify-center">
-                      El texto generado aparecerá aquí
+                      Su resultado aparecerá aquí una vez que envíe el formulario.
                     </div>
                   )}
                 </div>

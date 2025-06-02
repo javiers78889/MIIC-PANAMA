@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
+import Link from "next/link";
 
 export default function Hero() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -31,23 +32,15 @@ export default function Hero() {
           >
             <span className="text-white uppercase">proyecto miic panamá</span>
           </motion.h1>
-          <motion.p
-            className="mt-6 text-lg leading-8 text-muted-foreground"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            Where minimal design meets floral artistry. We craft elegant experiences that inspire and elevate your
-            space.
-          </motion.p>
+          
           <motion.div
             className="mt-10 flex items-center gap-x-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <a
-              href="https://www.flowersandsaints.com.au"
+            <Link
+              href="/miic"
               target="_blank"
               rel="noopener noreferrer"
               className="group text-white font-black transition-all duration-500 "
@@ -55,15 +48,8 @@ export default function Hero() {
               <span className="inline-block  bg-red-500  rounded-full p-4 animate-bounce group-hover:animate-none transition-transform duration-500">
                 Acceder al APP
               </span>
-            </a>
-            <a
-              href="https://www.flowersandsaints.com.au"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-semibold leading-6 text-white"
-            >
-              Learn more <span aria-hidden="true">→</span>
-            </a>
+            </Link>
+            
           </motion.div>
         </div>
         <motion.div
