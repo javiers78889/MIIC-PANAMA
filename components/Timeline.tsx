@@ -4,48 +4,119 @@ import { useState } from "react"
 
 const timelineEvents = [
   {
-    year: 2018,
-    title: "Fundación de la Agencia",
-    description: "Nuestro viaje comenzó con una pasión por el diseño minimalista y la creatividad.",
+    year: 2013,
+    title: "Nacimiento",
+    description:
+      "La Metodología Invertida para la Investigación Científica (MIIC) nace como un proyecto de aula en la Universidad del Istmo, Panamá.",
     details:
-      "Fundada por dos diseñadores visionarios, nuestra agencia comenzó como un pequeño estudio en el centro de la ciudad, combinando su amor por el diseño minimalista y la innovación digital.",
+      "Fue desarrollada por el Dr. Raúl Archibold Suárez, Ph.D., como autor principal, en colaboración con la Dra. Thaiska Tuñón Solano de Archibold, Ph.D., y el Dr. Sebastián Reyes, Ph.D.",
+  },
+  {
+    year: 2014,
+    title: "Implementación en ISAE Universidad",
+    description:
+      "El modelo MIIC se implementa como un proyecto de intervención educativa.",
+    details:
+      "Aplicado para la enseñanza de la metodología de la investigación en ISAE Universidad, Panamá.",
+  },
+  {
+    year: "2015-2025",
+    title: "Desarrollo continuo",
+    description:
+      "Desarrollo del modelo MIIC en contexto educativo.",
+    details:
+      "Se aplica como proyecto de intervención educativa en la Escuela Bilingüe República de Costa Rica.",
+  },
+  {
+    year: 2017,
+    title: "Primera presentación oficial",
+    description:
+      "Presentación en el I Congreso de Cultura Investigativa en la Educación Superior de Panamá.",
+    details:
+      "Organizado por el Instituto de Investigación de la Asociación de Universidades Privadas de Panamá (AUPPA).",
+  },
+  {
+    year: 2018,
+    title: "Congreso de Investigación Areandino - Bogotá",
+    description:
+      "Exposición del modelo MIIC en Colombia.",
+    details:
+      "Participación en el Congreso de Investigación Areandino, organizado por la Fundación Universitaria del Área Andina en Bogotá.",
+  },
+  {
+    year: 2018,
+    title: "Foro Internacional en Cartagena",
+    description:
+      "Presentación del MIIC en evento internacional.",
+    details:
+      "III Foro Internacional y IX Nacional de Pensamiento Moderno y Contemporáneo, en Cartagena de Indias, Colombia.",
   },
   {
     year: 2019,
-    title: "Primera Exposición Importante",
-    description: "Mostramos nuestra mezcla única de arte digital y diseño en el Festival de Diseño.",
+    title: "Congreso en Madrid",
+    description:
+      "Participación internacional del modelo MIIC en Europa.",
     details:
-      "Nuestra exposición 'Digital Bloom' atrajo a más de 10,000 visitantes y recibió elogios de la crítica por su enfoque innovador para fusionar tecnología con elementos creativos.",
+      "XIX Congreso Internacional de Investigación Educativa en la Universidad Autónoma de Madrid, España.",
   },
   {
-    year: 2020,
-    title: "Lanzamiento de Tienda Online",
-    description: "Expandimos nuestro alcance llevando nuestras creaciones al mundo digital.",
+    year: 2019,
+    title: "Congreso Areandino - Valledupar",
+    description:
+      "Nueva presentación del modelo MIIC en Colombia.",
     details:
-      "En respuesta a los cambios globales, nos orientamos al comercio electrónico, ofreciendo nuestros diseños únicos y talleres virtuales a una audiencia mundial.",
+      "X Congreso Internacional de Investigación Areandino, organizado por la Fundación Universitaria del Área Andina en Valledupar.",
   },
   {
-    year: 2021,
-    title: "Colaboración con Grandes Marcas",
-    description: "Nos asociamos con marcas líderes para crear colecciones exclusivas.",
+    year: "Junio 2019",
+    title: "Primera edición del libro MIIC",
+    description:
+      "Publicación formal del modelo MIIC.",
     details:
-      "Nuestras colaboraciones incluyeron ediciones limitadas con importantes marcas de moda y una línea de productos personalizados.",
+      "Lanzamiento de la primera edición del libro *Metodología Invertida para la Investigación Científica (MIIC)*.",
   },
   {
-    year: 2022,
-    title: "Reconocimiento Internacional",
-    description: "Recibimos el prestigioso Premio Internacional de Diseño.",
+    year: "Agosto 2019",
+    title: "Segunda edición del libro MIIC",
+    description:
+      "Ampliación de la obra escrita sobre el modelo.",
     details:
-      "Nuestra instalación 'Ecos Etéreos', que combinaba proyecciones holográficas con elementos interactivos, ganó la medalla de oro en la Exposición Internacional de Diseño.",
+      "Lanzamiento de la segunda edición del libro *Metodología Invertida para la Investigación Científica (MIIC)*.",
   },
   {
-    year: 2023,
-    title: "Expansión a Tiendas Físicas",
-    description: "Abrimos nuestra primera tienda insignia en el corazón de la ciudad.",
+    year: "Agosto 2020",
+    title: "Artículo científico sobre el método MIIC",
+    description:
+      "Publicación académica formal del modelo.",
     details:
-      "Nuestra ubicación cuenta con una experiencia inmersiva, combinando instalaciones digitales con una selección curada de productos de diseño y artículos de estilo de vida.",
+      "Publicado en la revista de divulgación científica ESPILA de ISAE Universidad.",
   },
-]
+  {
+    year: 2024,
+    title: "Nueva publicación de libro MIIC",
+    description:
+      "Se publica un libro con aplicaciones del modelo en nuevas áreas.",
+    details:
+      "Libro *Metodología de la Investigación. Método MIIC. Casos: educación y jurídico*, publicado en La Chorrera, Panamá.",
+  },
+  {
+    year: 2025,
+    title: "Prototipo Web MIIC Panamá",
+    description:
+      "Digitalización del modelo MIIC.",
+    details:
+      "Creación del prototipo de la Aplicación Web MIIC Panamá.",
+  },
+  {
+    year: "Internacional",
+    title: "Presentaciones internacionales del MIIC",
+    description:
+      "El modelo MIIC ha sido expuesto en múltiples países.",
+    details:
+      "Eventos en Panamá, Colombia, Paraguay, México, España, Costa Rica, El Salvador, entre otros.",
+  },
+];
+
 
 export default function Timeline() {
   const [expandedEvent, setExpandedEvent] = useState<number | null>(null)
@@ -64,7 +135,7 @@ export default function Timeline() {
 
           {timelineEvents.map((event, index) => (
             <TimelineEvent
-              key={event.year}
+              key={index}
               event={event}
               index={index}
               isExpanded={expandedEvent === index}

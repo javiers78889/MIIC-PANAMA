@@ -4,22 +4,22 @@ import Image from "next/image"
 
 const features = [
   {
-    title: "Raúl Archibold",
+    title: "Dr. Raúl Archibold, Ph.D.",
     description: "Clean aesthetics that put your content in the spotlight.",
     icon: "/raul.jpg",
   },
   {
-    title: "Javier Solis",
+    title: "Ing. Javier Solis",
     description: "Flawless experiences across all devices and screen sizes.",
     icon: "/javier.jpg",
   },
   {
-    title: "Jesús Carreiro",
+    title: "Ing. Jesús Carreiro",
     description: "Lightning-quick load times for smooth user interactions.",
     icon: "/jesus.jpg",
   },
   {
-    title: "Héctor Degracia",
+    title: "Ing. Héctor Degracia",
     description: "Lightning-quick load times for smooth user interactions.",
     icon: "/hector.jpeg",
   },
