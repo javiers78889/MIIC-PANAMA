@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { set } from "zod"
 
 type Slide = {
     id: string
