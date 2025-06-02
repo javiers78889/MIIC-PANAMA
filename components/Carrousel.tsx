@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { set } from "zod"
 
 type Slide = {
     id: string
@@ -52,6 +53,7 @@ const slides: Slide[] = [
 export default function CloudinaryVideoCarousel() {
     const [currentIndex, setCurrentIndex] = useState(0)
     const videoRefs = useRef<{ [key: string]: HTMLVideoElement | null }>({})
+    const [titulo, setTitulo] = useState(true)
 
 
 
@@ -125,7 +127,7 @@ export default function CloudinaryVideoCarousel() {
                     {slides.map((slide, index) => (
 
                         <div key={slide.id}
-                            className={`absolute top-0 cursor-pointer left-0 w-full h-full transition-opacity duration-500 ${index === currentIndex ? "opacity-100 z-20" : "opacity-0 z-10"}`}
+                            className={`absolute top-0 cursor-pointer  left-0 w-full h-full transition-opacity duration-500 ${index === currentIndex ? "opacity-100 z-20" : "opacity-0 z-10"}`}
                         >
                             <div className="w-full h-full flex flex-col relative">
                                 <div className="w-full flex-1 bg-black relative">
@@ -147,14 +149,25 @@ export default function CloudinaryVideoCarousel() {
                                             const video = event.currentTarget as HTMLVideoElement
 
                                             video.play()
-                                           
+                                            setTitulo(false)
+
+
+                                        }}
+                                        onMouseLeave={() => {
+                
+
+                                            setTitulo(true)
+
 
                                         }}
                                     />
                                     {/* Título estilo YouTube */}
-                                    <div className="absolute bottom-0 left-0 w-full bg-black/70 text-white text-sm px-4 py-2">
-                                        {slide.title}
-                                    </div>
+                                    {titulo ? (
+                                        <div className="absolute hover:  bottom-0 left-0 w-full bg-black/70 text-white text-sm px-4 py-2">
+                                            {slide.title}
+                                        </div>
+                                    ) : ''}
+
                                 </div>
                             </div>
                         </div>
