@@ -33,9 +33,9 @@ export default function FeatureCarousel() {
         <h2 className="text-3xl font-bold text-center mb-12 text-foreground">Sobre Nosotros</h2>
 
         <div className="cursor-grab overflow-hidden">
-          <div className="flex w-full justify-center lg:flex-row flex-col gap-6">
+          <div className="flex w-full justify-center lg:flex-row flex-col items-center gap-6">
             {features.map((feature, index) => (
-              <div key={index} className="group relative flex flex-col items-center w-full max-w-sm">
+              <div key={index} className="group relative flex flex-col items-center w-full max-w-sm cursor-pointer">
                 {/* Imagen */}
                 <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden shadow-lg">
                   <Image

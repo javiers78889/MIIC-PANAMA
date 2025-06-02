@@ -15,7 +15,6 @@ export default async function generateInfoAction(prevState: Tdata, formData: For
         preposicion: formData.get("preposicion"),
         interrogante: formData.get("interrogante"),
     }
-    console.log(data)
     const req = await fetch(url, {
         method: "POST",
         headers: {
@@ -25,7 +24,6 @@ export default async function generateInfoAction(prevState: Tdata, formData: For
     })
 
     const json = await req.json()
-    console.log(json)
 
     if (!req.ok) {
         return {

@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function NavBarDashItem() {
     return (
-        <>
+        <div className="lg:visible  invisible">
             <Link
                 href="https://www.flowersandsaints.com.au"
                 target="_blank"
@@ -28,6 +28,6 @@ export default function NavBarDashItem() {
             >
                 Sobre Nosotros
             </Link>
-        </>
+        </div>
     )
 }

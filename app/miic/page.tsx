@@ -15,7 +15,10 @@ import { verbosArray } from "@/action/get-verbos-action"
 import { interrogantesArray } from "@/action/get-interrogantes-action"
 
 
+
 export default function TextGenerator() {
+
+
 
 
   // Estado para el valor del input de preposciones
@@ -68,25 +71,19 @@ export default function TextGenerator() {
 
     
     const [state, dispatch] = useActionState(generateInfoAction, { success: "", error: [] })
-    useEffect(() => {
 
-      if (state.error) {
-        state.error.map(error => {
-          toast.error(error)
-        })
-      }
-
-    }, [state])
+  
+    
 
     return (
       <div className="bg-amber-50 container mx-auto py-8 w-full">
-        <h1 className="mt-6 mb-14 text-4xl font-bold text-center">Formulación de elementos para el protocolo de tesis según la Metodología Invertida para la Investigación (MIIC)</h1>
+        <h1 className="mt-6 mb-14 text-4xl font-bold text-center dark:text-black">Formulación de elementos para el protocolo de tesis según la Metodología Invertida para la Investigación (MIIC)</h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Form on the left */}
           <div>
             <Card className="p-6 border-none shadow-none">
-              <form className="space-y-0 flex flex-col gap-8" action={dispatch}>
+              <form className="space-y-0 flex flex-col gap-8 dark:text-black" action={dispatch}>
 
                 <div className="space-y-1">
                   <Label htmlFor="title">¿CUÁL ES EL PROBLEMA O EFECTO?</Label>
@@ -242,7 +239,7 @@ export default function TextGenerator() {
 
                                                                              {/*LBOTON DE ENVIO*/}
 
-                <Button type="submit" className="relative overflow-hidden px-6 py-3 rounded-lg
+                <Button type="submit" className="relative overflow-hidden px-6 py-3 rounded-lg cursor-pointer
                                                 bg-white text-indigo-600 border-2 border-indigo-500
                                                 transition-all duration-170 ease-in-out
                                                 active:scale-95
@@ -263,7 +260,7 @@ export default function TextGenerator() {
 
           {/* Display box on the right */}
           <div>
-            <Card className="p-6 h-full border-0 lg:border-l-1 shadow-none rounded-none ">
+            <Card className="p-6 h-full border-0 lg:border-l-1 shadow-none rounded-none dark:text-black">
               <div className="space-y-2">
                 <h2 className="pb-5 text-xl text-center font-semibold">Formulación de elementos para el protocolo de tesis según la Metodología Invertida para la Investigación (MIIC)</h2>
                 <div className="bg-white border rounded-md p-4 min-h-[300px] bg-muted/30 overflow-y-auto h-170">
@@ -285,6 +282,7 @@ export default function TextGenerator() {
                   ) : (
                     <div className="text-muted-foreground text-center h-full flex items-center justify-center">
                       Su resultado aparecerá aquí una vez que envíe el formulario.
+                     
                     </div>
                   )}
                 </div>

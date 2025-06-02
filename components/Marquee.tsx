@@ -8,7 +8,7 @@ export default function Marquee() {
       <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background z-10" />
       <motion.div
         className="flex whitespace-nowrap"
-        animate={{ x: ["0%", "-50%"] }}
+        animate={{ x: ["0%", "-150%"] }}
         transition={{ repeat: Number.POSITIVE_INFINITY, ease: "linear", duration: 20 }}
       >
         {[...Array(6)].map((_, index) => (

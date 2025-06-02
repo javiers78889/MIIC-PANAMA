@@ -1,3 +1,4 @@
+import CloudinaryVideoCarousel from "@/components/Carrousel";
 import FeatureCarousel from "@/components/FeatureCarousel";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
@@ -10,7 +11,9 @@ export default function Home() {
       <Hero />ç
       <Marquee />
       <Timeline />
+      <CloudinaryVideoCarousel/>
       <FeatureCarousel />
     </>
   )
 }
+
