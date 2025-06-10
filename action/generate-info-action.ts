@@ -1,6 +1,7 @@
 "use server"
 
 import { Envs } from "@/src/envs"
+import { GetToken } from "@/src/getToken"
 
 type Tdata = {
     success: string,
@@ -8,6 +9,7 @@ type Tdata = {
 }
 export default async function generateInfoAction(prevState: Tdata, formData: FormData) {
     const url = `${Envs.url}/generate/`
+    const token = await GetToken()
     const data = {
         causa: formData.get("causa"),
         problema: formData.get("problema"),
@@ -20,7 +22,8 @@ export default async function generateInfoAction(prevState: Tdata, formData: For
     const req = await fetch(url, {
         method: "POST",
         headers: {
-            "content-type": "application/json"
+            "content-type": "application/json",
+            "authorization": `Bearer ${token}`
         },
         body: JSON.stringify(data)
     })
@@ -33,11 +36,11 @@ export default async function generateInfoAction(prevState: Tdata, formData: For
             error: ["Token agotados"]
         }
     }
-    
 
-   
 
-   
+
+
+
     return {
         success: json,
         error: []
