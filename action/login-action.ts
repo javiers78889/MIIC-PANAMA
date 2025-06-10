@@ -41,7 +41,6 @@ export const Login = async (prevState: Tlogin, formData: FormData) => {
             body: JSON.stringify(loginData.data)
         })
     const json = await req.json()
-    console.log(json)
     if (!req.ok) {
         const error = ErrorSchema.parse(json)
 
