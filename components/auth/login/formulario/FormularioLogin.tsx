@@ -23,9 +23,9 @@ export default function FormularioLogin() {
         }
     }, [state])
     return (
-        <form className="space-y-6" action={dispatch}>
+        <form className="space-y-6 dark:text-black" action={dispatch}>
             <ItemsForm />
-            <div className="text-center text-sm">
+            <div className="text-center ">
                 No tienes cuenta?{" "}
                 <Link href="/auth/register" className="text-blue-600 hover:underline">
                     Crear
