@@ -25,9 +25,10 @@ export const Login = async (prevState: Tlogin, formData: FormData) => {
 
 
     if (!loginData.success) {
+        
         return {
             success: '',
-            error: [loginData.error.message]
+            error: loginData.error.errors.map(e => e.message)
         }
     }
 
