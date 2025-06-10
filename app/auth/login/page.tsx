@@ -18,7 +18,7 @@ export default function page() {
       <div className="w-full md:w-1/2 flex items-center justify-center p-8">
         <Card className="w-full max-w-md p-8 shadow-lg">
           <div className="mb-8 text-center">
-            <h2 className="text-2xl font-bold">Inicia Sesión</h2>
+            <h2 className="text-2xl font-bold  dark:text-black">Inicia Sesión</h2>
             <p className="text-gray-500 mt-2">Regístrate y obtén 3 tokens grátis</p>
           </div>
 
