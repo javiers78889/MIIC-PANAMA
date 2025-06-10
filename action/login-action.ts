@@ -1,6 +1,7 @@
 "use server"
 
 import { ErrorSchema, LoginSchema, successSchema } from "@/src"
+import { Envs } from "@/src/envs"
 import { cookies } from "next/headers"
 
 
@@ -13,7 +14,7 @@ type Tlogin = {
 
 export const Login = async (prevState: Tlogin, formData: FormData) => {
 
-    const url = 'https://miic-panama-backf.onrender.com/auth/login'
+    const url = `${Envs.url}/auth/login`
 
     const Data = {
         email: formData.get('email'),
