@@ -12,7 +12,7 @@ export default function Header() {
 
   const router = usePathname()
   console.log(router)
-  const botonFun = router !== "/" ? ("/") : ("/miic")
+  const botonFun = router !== "/" ? ("/") : ("/auth/login")
   const botonName = router !== "/" ? ("Volver") : ("App")
 
 

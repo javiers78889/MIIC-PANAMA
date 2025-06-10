@@ -4,14 +4,17 @@ import ItemsForm from './ItemsForm'
 import { Link } from 'lucide-react'
 import { Login } from '@/action/login-action'
 import { toast } from 'react-toastify'
+import { redirect } from 'next/navigation'
 
 
 export default function FormularioLogin() {
+ 
     const [state, dispatch] = useActionState(Login, { success: '', error: [] })
 
     useEffect(() => {
         if (state.success) {
             toast.success(state.success)
+            redirect('/miic')
         }
         if (state.error) {
             state.error.map(e => {

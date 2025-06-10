@@ -1,11 +1,13 @@
 "use server"
 
+import { Envs } from "@/src/envs"
+
 type Tdata = {
     success: string,
     error: string[]
 }
 export default async function generateInfoAction(prevState: Tdata, formData: FormData) {
-    const url = "https://miic-panama-backf.onrender.com/generate/"
+    const url = `${Envs.url}/generate/`
     const data = {
         causa: formData.get("causa"),
         problema: formData.get("problema"),

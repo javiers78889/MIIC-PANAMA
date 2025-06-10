@@ -1,6 +1,8 @@
 "use server"
 
-import { LoginSchema } from "@/src"
+import { ErrorSchema, LoginSchema, successSchema } from "@/src"
+import { cookies } from "next/headers"
+
 
 type Tlogin = {
     success: string,
@@ -11,6 +13,8 @@ type Tlogin = {
 
 export const Login = async (prevState: Tlogin, formData: FormData) => {
 
+    const url = 'https://miic-panama-backf.onrender.com/auth/login'
+
     const Data = {
         email: formData.get('email'),
         password: formData.get('password')
@@ -18,18 +22,42 @@ export const Login = async (prevState: Tlogin, formData: FormData) => {
 
     const loginData = LoginSchema.safeParse(Data)
 
-    if (!loginData.success) {
 
-        const error = loginData.error.errors.map((e) => (e.message))
+
+    if (!loginData.success) {
         return {
             success: '',
-            error: error
+            error: [loginData.error.message]
         }
     }
 
+    const req = await fetch(url,
+        {
+            method: 'POST',
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(loginData.data)
+        })
+    const json = await req.json()
+    console.log(json)
+    if (!req.ok) {
+        const error = ErrorSchema.parse(json)
+
+        return {
+            success: '',
+            error: [error.message]
+        }
+    }
+
+    const { message, token } = successSchema.parse(json)
+
+        ; (await cookies()).set('token', token)
+
     return {
-        success: '',
+        success: message,
         error: []
     }
+
 
 }
