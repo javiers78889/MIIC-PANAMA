@@ -4,14 +4,14 @@ import React from 'react'
 export default function NavBarDashItem() {
     return (
         <div className="lg:visible  invisible">
-            <Link
-                href="https://www.flowersandsaints.com.au"
+            <a
+                href="https://jscarr12.pythonanywhere.com/formulario/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-black font-bold leading-6 hover:text-primary transition-colors hover:animate-bounce border-r-1 px-6 py-1"
             >
                 Formulario
-            </Link>
+            </a>
             <Link
                 href="https://www.flowersandsaints.com.au"
                 target="_blank"
