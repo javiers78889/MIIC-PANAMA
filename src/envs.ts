@@ -1,3 +1,8 @@
+
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 export const Envs = {
-    url: 'https://miic-panama-backf.onrender.com'
+    url: process.env.BACK_URL
 }

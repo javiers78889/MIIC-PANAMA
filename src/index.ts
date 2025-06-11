@@ -21,6 +21,23 @@ export const ErrorSchema = z.object({
 
 
 export const successSchema = z.object({
-        token: z.string(),
+        token: z.string().optional(),
         message:z.string()
 })
+
+
+export const CreateAccountSchema = z.object({
+
+        email: z.string().email({ message: 'Ingrese un correo válido' }),
+        confirm_email: z.string().email({ message: 'Ingrese un correo válido' }),
+        password: z.string().min(6, { message: 'El password debe tener al menos 6 caracteres' }),
+        confirm_password: z.string().min(6, { message: 'El password debe tener al menos 6 caracteres' }),
+        name: z.string().nonempty({ message: 'El nombre no puede ir vacío' }),
+        lastname: z.string().nonempty({ message: 'El apellido no puede ir vacío' }),
+        cedula: z.string().nonempty({ message: 'La cedula no puede ir vacía' }),
+}).refine((data)=> data.email === data.confirm_email, {message: 'Los correos no coinciden'})
+  .refine((data)=> data.password === data.confirm_password, {message: 'Las contraseñas no coinciden'})
+
+
+
+  

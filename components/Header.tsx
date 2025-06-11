@@ -6,12 +6,13 @@ import Logo from "./ui/Logo"
 import NavFunctionButton from "./ui/NavFunctionButton"
 import { usePathname } from "next/navigation"
 import NavBarDashItem from "./NavBarDashItem"
+import { Button } from "./ui/button"
+import { LogoutAction } from "@/action/logout-action"
 
 export default function Header() {
 
-
+  
   const router = usePathname()
-  console.log(router)
   const botonFun = router !== "/" ? ("/") : ("/auth/login")
   const botonName = router !== "/" ? ("Volver") : ("App")
 
@@ -40,7 +41,12 @@ export default function Header() {
 
 
         </div>
-        <NavFunctionButton ref={botonFun} name={botonName} />
+       
+        {router === '/miic'?(
+          <Button onClick={()=>LogoutAction()} className="bg-red-500 hover:bg-red-600 text-white cursor-pointer">
+            Salir
+          </Button>
+        ):( <NavFunctionButton ref={botonFun} name={botonName} />)}
 
       </nav>
     </motion.header>

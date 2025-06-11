@@ -2,13 +2,9 @@
 
 import { ErrorSchema, LoginSchema, successSchema } from "@/src"
 import { Envs } from "@/src/envs"
+import Tlogin from "@/src/prevData"
 import { cookies } from "next/headers"
 
-
-type Tlogin = {
-    success: string,
-    error: string[]
-}
 
 
 

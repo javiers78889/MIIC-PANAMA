@@ -1,29 +1,33 @@
-import { Button } from '@/components/ui/button'
+
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import Link from 'next/link'
 import React from 'react'
 
-export default function ItemsForm() {
+
+type Props = {
+    readonly children?: React.ReactNode;
+};
+export default function ItemsForm({children}: Props) {
     return (
         <>
             <div className="space-y-2 text-sm dark:text-black">
                 <Label htmlFor="email">Email</Label>
                 <Input id="email" name='email' type="email" placeholder="name@example.com" />
             </div>
+            {children}
 
             <div className="space-y-2 text-sm dark:text-black">
                 <div className="flex items-center justify-between">
                     <Label htmlFor="password">Password</Label>
-                    <a href="#" className="text-sm text-blue-600 hover:underline">
-                        Olvidó su contraseña?
-                    </a>
+                   
                 </div>
                 <Input id="password" name='password' type="password" placeholder="••••••••" />
             </div>
 
 
 
-            <Button className="w-full bg-red-600 hover:bg-red-800 text-white cursor-pointer">Iniciar Sesión</Button>
+            
 
 
 
