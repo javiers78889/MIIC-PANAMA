@@ -22,7 +22,7 @@ export const Login = async (prevState: Tlogin, formData: FormData) => {
 
 
     if (!loginData.success) {
-        
+
         return {
             success: '',
             error: loginData.error.errors.map(e => e.message)
@@ -49,7 +49,11 @@ export const Login = async (prevState: Tlogin, formData: FormData) => {
 
     const { message, token } = successSchema.parse(json)
 
+    if (token) {
         ; (await cookies()).set('token', token)
+    }
+
+
 
     return {
         success: message,
