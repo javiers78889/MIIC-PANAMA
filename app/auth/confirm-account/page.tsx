@@ -7,7 +7,7 @@ import { toast } from 'react-toastify'
 import { redirect } from 'next/navigation'
 
 
-export default function page() {
+export default function Page() {
     const [token, setToken] = useState('')
     const [completo, setCompleto] = useState(false)
 
