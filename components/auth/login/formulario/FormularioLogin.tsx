@@ -26,8 +26,9 @@ export default function FormularioLogin() {
     return (
         <form className="space-y-6 dark:text-black" action={dispatch}>
             <ItemsForm>
-               
+
             </ItemsForm>
+            <Link href="/auth/recovery-password" className="text-blue-600 hover:text-blue-800 cursor-pointer">Olvidó su contraseña?</Link>
             <Button className="w-full bg-red-600 hover:bg-red-800 text-white cursor-pointer">Iniciar Sesión</Button>
             <div className="text-center ">
                 No tienes cuenta?{' '}

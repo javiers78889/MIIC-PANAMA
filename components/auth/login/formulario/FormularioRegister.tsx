@@ -4,7 +4,7 @@ import React, { useActionState, useEffect } from 'react'
 import ItemsForm from './ItemsForm'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
+
 import { CreateAccountAction } from '@/action/create-account-action'
 import { toast } from 'react-toastify'
 import { redirect } from 'next/navigation'
@@ -56,7 +56,7 @@ export default function FormularioRegister() {
             </div>
 
 
-            <Button className="w-full bg-red-600 hover:bg-red-800 text-white cursor-pointer">Registrarse</Button>
+            
         </form>
     )
 }

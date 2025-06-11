@@ -6,6 +6,7 @@ import Logo from '@/components/ui/Logo'
 
 
 
+
 import React from 'react'
 
 export default function page() {
@@ -19,6 +20,7 @@ export default function page() {
         <p className="text-gray-500 mt-2">Accede al formulario MIIC </p>
       </div>
       <FormularioLogin />
+     
       
     </>
 
