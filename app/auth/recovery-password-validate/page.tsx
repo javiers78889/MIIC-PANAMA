@@ -5,7 +5,6 @@ import Logo from '@/components/ui/Logo'
 import { toast } from 'react-toastify'
 import { recoverPasswordValidateToken } from '@/action/recover-password-validate-token-action'
 import FormularioNewPwd from '@/components/auth/login/formulario/FormularioNewPwd'
-import { redirect } from 'next/navigation'
 
 
 export default function Page() {
