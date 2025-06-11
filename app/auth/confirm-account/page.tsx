@@ -49,7 +49,7 @@ export default function Page() {
     }, [state])
     return (
         <>
-            <div className="mb-8 text-center flex flex-col jus items-center">
+            <div className="mb-8 text-center flex flex-col jus items-center justify-center">
                 <Logo size={12} />
                 <h2 className="text-2xl font-bold  dark:text-black">Confirma tu Cuenta</h2>
                 <p className="text-gray-500 mt-2">Revisa tu correo y obten el token de confirmacion</p>

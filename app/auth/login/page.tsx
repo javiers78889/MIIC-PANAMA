@@ -13,7 +13,7 @@ export default function page() {
   return (
 
     <>
-      <div className="mb-8 text-center">
+      <div className="mb-8 text-center flex flex-col justify-center items-center">
          <Logo size={12}/>
         <h2 className="text-2xl font-bold  dark:text-black">Inicia Sesión</h2>
         <p className="text-gray-500 mt-2">Accede al formulario MIIC </p>
