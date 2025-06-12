@@ -11,10 +11,10 @@ export const RecoveryPassword = async (prevState: Tlogin, formData: FormData) =>
     const validate = validateEmailSchema.safeParse(email)
 
     if (!validate.success) {
-        const error = validate.error.message
+        const error = validate.error.errors.map(e=> e.message)
         return {
             success: '',
-            error: [error]
+            error: error
         }
     }
 

@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input'
 import { CreateAccountAction } from '@/action/create-account-action'
 import { toast } from 'react-toastify'
 import { redirect } from 'next/navigation'
+import ButtonChild from '@/components/widgets/Button'
 
 
 export default function FormularioRegister() {
@@ -55,8 +56,8 @@ export default function FormularioRegister() {
                 <Input id="confirm_password" name='confirm_password' type="password" placeholder="••••••••" />
             </div>
 
+            <ButtonChild>Crear Cuenta</ButtonChild>
 
-            
         </form>
     )
 }

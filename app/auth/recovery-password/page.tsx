@@ -17,7 +17,7 @@ export default function Page() {
         }
 
         if (state.error) {
-            state.error.map(e => {
+            state.error.forEach(e => {
 
                 toast.error(e)
             })

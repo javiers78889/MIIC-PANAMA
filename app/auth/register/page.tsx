@@ -1,6 +1,5 @@
 import FormularioRegister from '@/components/auth/login/formulario/FormularioRegister'
 import Logo from '@/components/ui/Logo'
-import ButtonChild from '@/components/widgets/Button'
 import Link from 'next/link'
 import React from 'react'
 
@@ -14,9 +13,9 @@ export default function page() {
             </div>
 
             <FormularioRegister />
-            <ButtonChild>Crear Cuenta</ButtonChild>
+            
         
-            <p className='text-center'> Ya tienes cuenta?. <Link href={'/auth/login'} className='text-blue-500 hover:text-blue-800'>Login</Link></p>
+            <p className='text-center dark:text-black'> Ya tienes cuenta?. <Link href={'/auth/login'} className='text-blue-500 hover:text-blue-800'>Login</Link></p>
 
         </>
     )
