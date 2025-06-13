@@ -4,7 +4,7 @@ type TPrepo = {
     value: string,
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
     setShowSuggestions: React.Dispatch<React.SetStateAction<boolean>>,
-    showSuggestions: Boolean,
+    showSuggestions: boolean,
     handleSelect: (palabra: string) => void
 
 
