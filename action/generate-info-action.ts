@@ -1,5 +1,6 @@
 "use server"
 
+import { ErrorSchema, ResponseSchema } from "@/src"
 import { Envs } from "@/src/envs"
 import { GetToken } from "@/src/getToken"
 
@@ -21,28 +22,37 @@ export default async function generateInfoAction(prevState: Tdata, formData: For
         subproblemas: formData.getAll('subproblemas[]'),
         subcausas: formData.getAll('subcausas[]'),
     }
+
+    const validate = ResponseSchema.safeParse(data)
+
+    if (!validate.success) {
+        const error = validate.error.errors.map(e => (e.message))
+        return {
+            success: '',
+            error: error
+        }
+    }
     const req = await fetch(url, {
         method: "POST",
         headers: {
             "content-type": "application/json",
             "authorization": `Bearer ${token}`
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(validate.data)
     })
 
     const json = await req.json()
 
     if (!req.ok) {
+        const error = ErrorSchema.parse(json)
         return {
             success: "",
-            error: ["Token agotados"]
+            error: [error.message]
         }
+
     }
 
-
-
-
-
+  
     return {
         success: json,
         error: []
