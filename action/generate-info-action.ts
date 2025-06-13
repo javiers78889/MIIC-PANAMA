@@ -18,6 +18,8 @@ export default async function generateInfoAction(prevState: Tdata, formData: For
         verbo: formData.get("verbo"),
         preposicion: formData.get("preposicion"),
         interrogante: formData.get("interrogante"),
+        subproblemas: formData.getAll('subproblemas[]'),
+        subcausas: formData.getAll('subcausas[]'),
     }
     const req = await fetch(url, {
         method: "POST",
