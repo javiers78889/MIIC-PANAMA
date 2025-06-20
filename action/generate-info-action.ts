@@ -61,7 +61,6 @@ export default async function generateInfoAction(prevState: Tdata, formData: For
         .replace(/^```json\n?/, '')  // elimina bloque inicial
         .replace(/\n```$/, '')       // elimina bloque final
         .trim();
-    console.log(json)
     const parseo = JSON.parse(limpio);
     const validateParse = investigacionSchema.parse(parseo)
 

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect } from "react"
+import React, { useEffect, useRef } from "react"
 
 import { useActionState, useState } from "react"
 import { Card } from "@/components/ui/card"
@@ -12,6 +12,7 @@ import { toast } from "react-toastify"
 
 
 export default function TextGenerator() {
+  const ref = useRef<HTMLFormElement>(null) // evita que se recargue la pantalla al hacer submit
 
   // Estado para el valor del input de preposciones
   const [state, dispatch] = useActionState(generateInfoAction, { success: [], error: [] }); // Estado para manejar el resultado de la acción
@@ -102,6 +103,9 @@ export default function TextGenerator() {
         toast.error(e)
       })
     }
+    if (state.success) {
+      ref.current?.reset()
+    }
   }, [state])
 
   return (
@@ -112,7 +116,7 @@ export default function TextGenerator() {
         {/* Form on the left */}
         <div>
           <Card className="p-6 border-none shadow-none">
-            <form className="space-y-0 flex flex-col gap-8 dark:text-black" action={dispatch}>
+            <form className="space-y-0 flex flex-col gap-8 dark:text-black" action={dispatch} ref={ref}>
 
               <ItemsFormulaioMiic
                 subproblemas={subproblemas}
