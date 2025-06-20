@@ -14,7 +14,7 @@ import { toast } from "react-toastify"
 export default function TextGenerator() {
 
   // Estado para el valor del input de preposciones
-  const [state, dispatch] = useActionState(generateInfoAction, { success: '', error: [] }); // Estado para manejar el resultado de la acción
+  const [state, dispatch] = useActionState(generateInfoAction, { success: [], error: [] }); // Estado para manejar el resultado de la acción
   const [value, setValue] = useState(''); // Estado para el valor del input
   const [showSuggestions, setShowSuggestions] = useState(false);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -149,7 +149,7 @@ export default function TextGenerator() {
         </div>
 
         {/* Display box on the right */}
-        <ResultadoMiic state={state} />
+        <ResultadoMiic state={state.success[0]} />
       </div>
     </div >
   )

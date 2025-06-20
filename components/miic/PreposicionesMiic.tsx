@@ -20,7 +20,7 @@ export default function PreposicionesMiic({ value, handleChange, setShowSuggesti
 
             {/* Input para seleccionar la preposición */}
             <input
-                className="bg-white dark:text-black rounded-lg py-1 w-full p-2 px-5 my-2 border-1 border-gray-300 focus:border-gray-700 outline-none transition duration-500"
+                className="bg-white dark:text-black rounded-lg py-1 w-full p-2 px-5 my-2 border-1 border-gray-300 focus:border-gray-700 outline-none transition duration-500 cursor-pointer"
                 name="preposicion"
                 value={value}
                 onChange={handleChange} // Llama a handleChange cuando el usuario escribe

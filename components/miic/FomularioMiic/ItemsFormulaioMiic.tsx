@@ -8,6 +8,12 @@ import VerbosMiic from '../VerbosMiic'
 import PreposicionesMiic from '../PreposicionesMiic'
 import ButtonSend from '@/components/widgets/ButtonSend'
 import TItemForm from '@/src/types'
+import InterrogantesMiic1 from '../InterrogantesMiic copy'
+import InterrogantesMiic2 from '../InterrogantesMiic copy 3'
+import InterrogantesMiic3 from '../InterrogantesMiic copy 2'
+import VerbosMiic1 from '../VerbosMiic copy'
+import VerbosMiic2 from '../VerbosMiic copy 2'
+import VerbosMiic3 from '../VerbosMiic copy 3'
 
 
 
@@ -46,7 +52,7 @@ export default function ItemsFormulaioMiic({
                         className="bg-white dark:text-black w-full p-3 px-5 my-2 border-1 border-gray-300 focus:border-gray-700 outline-none transition duration-500"
                         id="title"
                         placeholder="Ejemplo: Desempleo"
-                      
+
                     />
                 </div>
 
@@ -64,7 +70,7 @@ export default function ItemsFormulaioMiic({
                         id="causa"
                         className="bg-white dark:text-black w-full p-3 px-5 my-2 border border-gray-300 focus:border-gray-700 outline-none transition duration-500"
                         placeholder="Ejemplo: Experiencia laboral"
-                        
+
                     />
                 </div>
 
@@ -74,25 +80,30 @@ export default function ItemsFormulaioMiic({
 
             <div className="space-y-1">
                 <Label htmlFor="title">¿CUÁL ES EL SUJETO DE ESTUDIO?  <span className="text-xl font-bold text-gray-500">S.E</span></Label>
-                <Input name='sujeto' className='bg-white dark:text-black w-full p-3 px-5 my-2 border-1 border-gray-300 focus:border-gray-700 outline-none transition duration-500' id="title" placeholder="Ejemplo: Estudiantes"  />
+                <Input name='sujeto' className='bg-white dark:text-black w-full p-3 px-5 my-2 border-1 border-gray-300 focus:border-gray-700 outline-none transition duration-500' id="title" placeholder="Ejemplo: Estudiantes" />
             </div>
 
             <div className="space-y-1">
                 <Label htmlFor="title">¿CUÁL ES EL CONTEXTO DONDE SE DESARROLLARÁ LA INVESTIGACIÓN?  <span className="text-xl font-bold text-gray-500">C</span></Label>
-                <Input name='contexto' className='bg-white dark:text-black w-full p-3 px-5 my-2 border-1 border-gray-300 focus:border-gray-700 outline-none transition duration-500' id="title" placeholder="Ejemplo: ISAE Universidad"  />
+                <Input name='contexto' className='bg-white dark:text-black w-full p-3 px-5 my-2 border-1 border-gray-300 focus:border-gray-700 outline-none transition duration-500' id="title" placeholder="Ejemplo: ISAE Universidad" />
             </div>
 
-
+            {/*LAS PREPOSICIONES*/}
+            <PreposicionesMiic value={value} handleChange={handleChange} setShowSuggestions={setShowSuggestions} showSuggestions={showSuggestions} handleSelect={handleSelect} />
             {/*LAS INTERROGANTES*/}
             <InterrogantesMiic value3={value3} handleChange3={handleChange3} setShowSuggestions3={setShowSuggestions3} showSuggestions3={showSuggestions3} handleSelect3={handleSelect3} />
+            <InterrogantesMiic1 />
+            <InterrogantesMiic2 />
+            <InterrogantesMiic3 />
 
 
             {/*LOS VERBOS*/}
             <VerbosMiic value2={value2} handleChange2={handleChange2} setShowSuggestions2={setShowSuggestions2} showSuggestions2={showSuggestions2} handleSelect2={handleSelect2} />
+            <VerbosMiic1 />
+            <VerbosMiic2 />
+            <VerbosMiic3 />
 
 
-            {/*LAS PREPOSICIONES*/}
-            <PreposicionesMiic value={value} handleChange={handleChange} setShowSuggestions={setShowSuggestions} showSuggestions={showSuggestions} handleSelect={handleSelect} />
 
             {/*LBOTON DE ENVIO*/}
             <ButtonSend>Obtener Resultado</ButtonSend>

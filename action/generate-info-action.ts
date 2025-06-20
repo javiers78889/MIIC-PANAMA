@@ -1,11 +1,11 @@
 "use server"
 
-import { ErrorSchema, ResponseSchema } from "@/src"
+import { ErrorSchema, investigacionSchema, investigacionSchemaType, ResponseSchema } from "@/src"
 import { Envs } from "@/src/envs"
 import { GetToken } from "@/src/getToken"
 
 type Tdata = {
-    success: string,
+    success: investigacionSchemaType[],
     error: string[]
 }
 export default async function generateInfoAction(prevState: Tdata, formData: FormData) {
@@ -17,8 +17,14 @@ export default async function generateInfoAction(prevState: Tdata, formData: For
         sujeto: formData.get("sujeto"),
         contexto: formData.get("contexto"),
         verbo: formData.get("verbo"),
+        v1: formData.get("v1"),
+        v2: formData.get("v2"),
+        v3: formData.get("v3"),
         preposicion: formData.get("preposicion"),
         interrogante: formData.get("interrogante"),
+        i1: formData.get("i1"),
+        i2: formData.get("i2"),
+        i3: formData.get("i3"),
         subproblemas: formData.getAll('subproblemas[]'),
         subcausas: formData.getAll('subcausas[]'),
     }
@@ -28,7 +34,7 @@ export default async function generateInfoAction(prevState: Tdata, formData: For
     if (!validate.success) {
         const error = validate.error.errors.map(e => (e.message))
         return {
-            success: '',
+            success: [],
             error: error
         }
     }
@@ -46,15 +52,21 @@ export default async function generateInfoAction(prevState: Tdata, formData: For
     if (!req.ok) {
         const error = ErrorSchema.parse(json)
         return {
-            success: "",
+            success: [],
             error: [error.message]
         }
 
     }
+    const limpio = json
+        .replace(/^```json\n?/, '')  // elimina bloque inicial
+        .replace(/\n```$/, '')       // elimina bloque final
+        .trim();
+    console.log(json)
+    const parseo = JSON.parse(limpio);
+    const validateParse = investigacionSchema.parse(parseo)
 
-  
     return {
-        success: json,
+        success: [validateParse],
         error: []
     }
 }
