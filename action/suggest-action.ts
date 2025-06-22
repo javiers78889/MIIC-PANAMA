@@ -53,7 +53,7 @@ export const SuggestAction = async (data: TData,prevState:TPrev) => {
     }
 
  
-
+    console.log(validate.data)
     return { success: [validate.data], 
         error: [] }
 

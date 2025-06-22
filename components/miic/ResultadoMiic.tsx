@@ -46,7 +46,7 @@ export default function ResultadoMiic({ state, isPending }: TResult) {
                                     <Logo size={50} />
 
                                 </motion.div>
-                                <h1 className='font-black text-xl'>Cargando...</h1>
+                               
                             </div>
                             
                         ) :

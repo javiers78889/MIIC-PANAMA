@@ -19,7 +19,6 @@ import VerbosMiic3 from '../VerbosMiic copy 3'
 import { Button } from '@/components/ui/button'
 import { Brain } from 'lucide-react'
 import { SuggestAction } from '@/action/suggest-action'
-import { Tresults } from '@/src'
 import { toast } from 'react-toastify'
 
 
