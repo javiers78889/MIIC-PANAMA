@@ -1,4 +1,6 @@
-import React from 'react'
+"use client"
+
+import React, { ChangeEvent, useActionState, useEffect, useState, useTransition } from 'react'
 import SubProblemaMiic from '../SubProblemaMiic'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -14,7 +16,11 @@ import InterrogantesMiic3 from '../InterrogantesMiic copy 2'
 import VerbosMiic1 from '../VerbosMiic copy'
 import VerbosMiic2 from '../VerbosMiic copy 2'
 import VerbosMiic3 from '../VerbosMiic copy 3'
-
+import { Button } from '@/components/ui/button'
+import { Brain } from 'lucide-react'
+import { SuggestAction } from '@/action/suggest-action'
+import { Tresults } from '@/src'
+import { toast } from 'react-toastify'
 
 
 export default function ItemsFormulaioMiic({
@@ -42,6 +48,76 @@ export default function ItemsFormulaioMiic({
     showSuggestions,
     handleSelect,
 }: TItemForm) {
+
+
+    const [dataform, setDataForm] = useState({
+        preposicionSugerida: '',
+        ppi: '',
+        i1: '',
+        i2: '',
+        i3: '',
+        verbo: '',
+        verboOE1: '',
+        verboOE2: '',
+        verboOE3: '',
+        og: '',
+        o1: '',
+        o2: '',
+        o3: ''
+    }
+    )
+    const [values, setvalue] = useState({
+        problema: '',
+        causa: '',
+        sujeto: '',
+        contexto: ''
+    });
+
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setvalue(prev => ({
+            ...prev,
+            [e.target.name]: e.target.value
+        }));
+    };
+    const inyectar = SuggestAction.bind(null, values)
+    const [state, dispatch] = useActionState(inyectar, { success: [], error: [] })
+    const [isPending, startTransition] = useTransition();
+
+    useEffect(() => {
+        if (state.error) {
+            state.error.map(e => {
+                toast.error(e)
+            })
+        }
+
+    }, [state])
+    const onSubmit = () => {
+        startTransition(() => {
+
+            dispatch()
+        })
+        if (state.success[0]) {
+            setDataForm({
+                preposicionSugerida: state.success[0].preposicionSugerida,
+                ppi: state.success[0].ppi,
+                i1: state.success[0].i1,
+                i2: state.success[0].i2,
+                i3: state.success[0].i3,
+                verbo: state.success[0].verbo,
+                verboOE1: state.success[0].verboOE1,
+                verboOE2: state.success[0].verboOE2,
+                verboOE3: state.success[0].verboOE3,
+                og: state.success[0].verbo,
+                o1: state.success[0].verboOE1,
+                o2: state.success[0].verboOE2,
+                o3: state.success[0].verboOE3,
+            }
+            )
+
+        }
+
+
+    }
     return (
         <>
             <div className="space-y-4">
@@ -51,6 +127,7 @@ export default function ItemsFormulaioMiic({
                         name="problema"
                         className="bg-white dark:text-black w-full p-3 px-5 my-2 border-1 border-gray-300 focus:border-gray-700 outline-none transition duration-500"
                         id="title"
+                        onChange={onChange}
                         placeholder="Ejemplo: Desempleo"
 
                     />
@@ -68,6 +145,7 @@ export default function ItemsFormulaioMiic({
                     <Input
                         name="causa"
                         id="causa"
+                        onChange={onChange}
                         className="bg-white dark:text-black w-full p-3 px-5 my-2 border border-gray-300 focus:border-gray-700 outline-none transition duration-500"
                         placeholder="Ejemplo: Experiencia laboral"
 
@@ -80,28 +158,52 @@ export default function ItemsFormulaioMiic({
 
             <div className="space-y-1">
                 <Label htmlFor="title">¿CUÁL ES EL SUJETO DE ESTUDIO?  <span className="text-xl font-bold text-gray-500">S.E</span></Label>
-                <Input name='sujeto' className='bg-white dark:text-black w-full p-3 px-5 my-2 border-1 border-gray-300 focus:border-gray-700 outline-none transition duration-500' id="title" placeholder="Ejemplo: Estudiantes" />
+                <Input name='sujeto' onChange={onChange} className='bg-white dark:text-black w-full p-3 px-5 my-2 border-1 border-gray-300 focus:border-gray-700 outline-none transition duration-500' id="title" placeholder="Ejemplo: Estudiantes" />
             </div>
 
             <div className="space-y-1">
                 <Label htmlFor="title">¿CUÁL ES EL CONTEXTO DONDE SE DESARROLLARÁ LA INVESTIGACIÓN?  <span className="text-xl font-bold text-gray-500">C</span></Label>
-                <Input name='contexto' className='bg-white dark:text-black w-full p-3 px-5 my-2 border-1 border-gray-300 focus:border-gray-700 outline-none transition duration-500' id="title" placeholder="Ejemplo: ISAE Universidad" />
+                <Input name='contexto' onChange={onChange} className='bg-white dark:text-black w-full p-3 px-5 my-2 border-1 border-gray-300 focus:border-gray-700 outline-none transition duration-500' id="title" placeholder="Ejemplo: ISAE Universidad" />
             </div>
 
+
+            {/*Sugerir*/}
+
+            {
+                isPending
+                    ? <Button
+                        type="button"
+                        className="bg-purple-700 text-white hover:bg-purple-900 cursor-pointer font-bold uppercase"
+                        onClick={onSubmit}
+                        disabled={isPending}
+                    >
+                        Pensando...<Brain />
+                    </Button>
+                    : (
+                        <Button
+                            type="button"
+                            className="bg-purple-700 text-white hover:bg-purple-900 cursor-pointer font-bold uppercase"
+                            onClick={onSubmit}
+                        >
+                            Sugerir con IA <Brain />
+                        </Button>
+                    )
+            }
+
             {/*LAS PREPOSICIONES*/}
-            <PreposicionesMiic value={value} handleChange={handleChange} setShowSuggestions={setShowSuggestions} showSuggestions={showSuggestions} handleSelect={handleSelect} />
+            <PreposicionesMiic dataform={dataform} value={value} handleChange={handleChange} setShowSuggestions={setShowSuggestions} showSuggestions={showSuggestions} handleSelect={handleSelect} />
             {/*LAS INTERROGANTES*/}
-            <InterrogantesMiic value3={value3} handleChange3={handleChange3} setShowSuggestions3={setShowSuggestions3} showSuggestions3={showSuggestions3} handleSelect3={handleSelect3} />
-            <InterrogantesMiic1 />
-            <InterrogantesMiic2 />
-            <InterrogantesMiic3 />
+            <InterrogantesMiic dataform={dataform} value3={value3} handleChange3={handleChange3} setShowSuggestions3={setShowSuggestions3} showSuggestions3={showSuggestions3} handleSelect3={handleSelect3} />
+            <InterrogantesMiic1 dataform={dataform} />
+            <InterrogantesMiic2 dataform={dataform} />
+            <InterrogantesMiic3 dataform={dataform} />
 
 
             {/*LOS VERBOS*/}
-            <VerbosMiic value2={value2} handleChange2={handleChange2} setShowSuggestions2={setShowSuggestions2} showSuggestions2={showSuggestions2} handleSelect2={handleSelect2} />
-            <VerbosMiic1 />
-            <VerbosMiic2 />
-            <VerbosMiic3 />
+            <VerbosMiic dataform={dataform} value2={value2} handleChange2={handleChange2} setShowSuggestions2={setShowSuggestions2} showSuggestions2={showSuggestions2} handleSelect2={handleSelect2} />
+            <VerbosMiic1 dataform={dataform} />
+            <VerbosMiic2 dataform={dataform} />
+            <VerbosMiic3 dataform={dataform} />
 
 
 

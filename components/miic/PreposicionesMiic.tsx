@@ -1,16 +1,34 @@
 import { preposicionesArray } from '@/action/get-preposiciones-action'
 import React from 'react'
+
+type dat = {
+    preposicionSugerida: string;
+    ppi: string;
+    i1: string;
+    i2: string;
+    i3: string;
+    verbo: string;
+    verboOE1: string;
+    verboOE2: string;
+    verboOE3: string;
+    og: string;
+    o1: string;
+    o2: string;
+    o3: string;
+};
+
 type TPrepo = {
     value: string,
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
     setShowSuggestions: React.Dispatch<React.SetStateAction<boolean>>,
     showSuggestions: boolean,
     handleSelect: (palabra: string) => void
+    dataform: dat
 
 
 }
 
-export default function PreposicionesMiic({ value, handleChange, setShowSuggestions, showSuggestions,handleSelect }: TPrepo) {
+export default function PreposicionesMiic({ dataform, value, handleChange, setShowSuggestions, showSuggestions, handleSelect }: TPrepo) {
     return (
         <div className="relative">
             {/* Etiqueta del input */}
@@ -22,7 +40,7 @@ export default function PreposicionesMiic({ value, handleChange, setShowSuggesti
             <input
                 className="bg-white dark:text-black rounded-lg py-1 w-full p-2 px-5 my-2 border-1 border-gray-300 focus:border-gray-700 outline-none transition duration-500 cursor-pointer"
                 name="preposicion"
-                value={value}
+                value={value ? value : dataform.preposicionSugerida}
                 onChange={handleChange} // Llama a handleChange cuando el usuario escribe
                 placeholder="Escribe o selecciona"
                 onFocus={() => setShowSuggestions(true)} // Muestra las sugerencias cuando el input tiene el foco

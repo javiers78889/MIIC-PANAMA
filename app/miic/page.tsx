@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useTransition } from "react"
 
 import { useActionState, useState } from "react"
 import { Card } from "@/components/ui/card"
@@ -8,6 +8,7 @@ import generateInfoAction from "@/action/generate-info-action"
 import ResultadoMiic from "@/components/miic/ResultadoMiic"
 import ItemsFormulaioMiic from "@/components/miic/FomularioMiic/ItemsFormulaioMiic"
 import { toast } from "react-toastify"
+
 
 
 
@@ -108,6 +109,16 @@ export default function TextGenerator() {
     }
   }, [state])
 
+  const [isPending, startTransition] = useTransition()
+
+  const onSubmit = (formData: FormData) => {
+
+    startTransition(() => {
+      dispatch(formData)
+    })
+
+  }
+
   return (
     <div className="bg-amber-50 container mx-auto py-8 w-full">
       <h1 className="mt-6 mb-14 text-4xl font-bold text-center dark:text-black">Formulación de elementos para el protocolo de tesis según la Metodología Invertida para la Investigación (MIIC)</h1>
@@ -116,7 +127,7 @@ export default function TextGenerator() {
         {/* Form on the left */}
         <div>
           <Card className="p-6 border-none shadow-none h-[80vh] overflow-y-auto">
-            <form className="space-y-0 flex flex-col gap-8 dark:text-black" action={dispatch} ref={ref}>
+            <form className="space-y-0 flex flex-col gap-8 dark:text-black" action={onSubmit} ref={ref}>
 
               <ItemsFormulaioMiic
                 subproblemas={subproblemas}
@@ -153,8 +164,12 @@ export default function TextGenerator() {
         </div>
 
         {/* Display box on the right */}
-        <ResultadoMiic state={state.success[0]} />
-        
+     
+          <ResultadoMiic state={state.success[0]} isPending={isPending} />
+
+     
+
+
       </div>
     </div >
   )

@@ -1,20 +1,34 @@
 import { interrogantesArray } from '@/action/get-interrogantes-action'
 import React, { useState } from 'react'
+type ResultadoMIIC = {
+    preposicionSugerida: string;
+    ppi: string;
+    i1: string;
+    i2: string;
+    i3: string;
+    verbo: string;
+    verboOE1: string;
+    verboOE2: string;
+    verboOE3: string;
+    og: string;
+    o1: string;
+    o2: string;
+    o3: string;
+};
 
-
-export default function InterrogantesMiic1() {
-     const [value3, setValue3] = useState(''); // Estado para el valor del input
-      const [showSuggestions3, setShowSuggestions3] = useState(false);
-      const handleChange3 = (e: React.ChangeEvent<HTMLInputElement>) => {
+export default function InterrogantesMiic1({ dataform }: { dataform: ResultadoMIIC }) {
+    const [value3, setValue3] = useState(''); // Estado para el valor del input
+    const [showSuggestions3, setShowSuggestions3] = useState(false);
+    const handleChange3 = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue3(e.target.value); // Actualiza el valor del input con lo que el usuario escribe
-      };
-    
-      // Función para manejar la selección de una preposición
-      const handleSelect3 = (palabra: string) => {
+    };
+
+    // Función para manejar la selección de una preposición
+    const handleSelect3 = (palabra: string) => {
         setValue3(palabra); // Establece el valor del input a la preposición seleccionada
         setShowSuggestions3(false); // Oculta las sugerencias después de la selección
-      };
-    
+    };
+
     return (
         <div className="relative">
             {/* Etiqueta del input */}
@@ -26,7 +40,7 @@ export default function InterrogantesMiic1() {
             <input
                 className="bg-white dark:text-black rounded-lg py-1 w-full p-2 px-5 my-2 border-1 border-gray-300 focus:border-gray-700 outline-none transition duration-500 cursor-pointer"
                 name="i1"
-                value={value3}
+                value={dataform.i1?dataform.i1:value3}
                 onChange={handleChange3} // Llama a handleChange cuando el usuario escribe
                 placeholder="Escribe o selecciona"
                 onFocus={() => setShowSuggestions3(true)} // Muestra las sugerencias cuando el input tiene el foco

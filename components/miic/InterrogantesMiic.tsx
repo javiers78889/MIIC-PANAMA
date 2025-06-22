@@ -1,5 +1,20 @@
 import { interrogantesArray } from '@/action/get-interrogantes-action'
 import React from 'react'
+export type ResultadoMIIC = {
+    preposicionSugerida: string;
+    ppi: string;
+    i1: string;
+    i2: string;
+    i3: string;
+    verbo: string;
+    verboOE1: string;
+    verboOE2: string;
+    verboOE3: string;
+    og: string;
+    o1: string;
+    o2: string;
+    o3: string;
+};
 
 type TInterrogantes = {
     value3: string,
@@ -7,9 +22,10 @@ type TInterrogantes = {
     setShowSuggestions3: React.Dispatch<React.SetStateAction<boolean>>,
     showSuggestions3: boolean,
     handleSelect3: (palabra: string) => void
+    readonly dataform: ResultadoMIIC
 }
 
-export default function InterrogantesMiic({value3,handleChange3,setShowSuggestions3,showSuggestions3,handleSelect3}:TInterrogantes) {
+export default function InterrogantesMiic({ dataform, value3, handleChange3, setShowSuggestions3, showSuggestions3, handleSelect3 }: TInterrogantes) {
     return (
         <div className="relative">
             {/* Etiqueta del input */}
@@ -21,7 +37,7 @@ export default function InterrogantesMiic({value3,handleChange3,setShowSuggestio
             <input
                 className="bg-white dark:text-black rounded-lg py-1 w-full p-2 px-5 my-2 border-1 border-gray-300 focus:border-gray-700 outline-none transition duration-500 cursor-pointer"
                 name="interrogante"
-                value={value3}
+                value={value3 ? value3 : dataform.ppi}
                 onChange={handleChange3} // Llama a handleChange cuando el usuario escribe
                 placeholder="Escribe o selecciona"
                 onFocus={() => setShowSuggestions3(true)} // Muestra las sugerencias cuando el input tiene el foco

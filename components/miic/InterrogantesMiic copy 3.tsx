@@ -1,8 +1,9 @@
 import { interrogantesArray } from '@/action/get-interrogantes-action'
 import React, { useState } from 'react'
+import { ResultadoMIIC } from './InterrogantesMiic';
 
 
-export default function InterrogantesMiic2() {
+export default function InterrogantesMiic2({dataform}:{dataform:ResultadoMIIC}) {
      const [value3, setValue3] = useState(''); // Estado para el valor del input
       const [showSuggestions3, setShowSuggestions3] = useState(false);
       const handleChange3 = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +27,7 @@ export default function InterrogantesMiic2() {
             <input
                 className="bg-white dark:text-black rounded-lg py-1 w-full p-2 px-5 my-2 border-1 border-gray-300 focus:border-gray-700 outline-none transition duration-500 cursor-pointer"
                 name="i2"
-                value={value3}
+                value={value3?value3:dataform.i2}
                 onChange={handleChange3} // Llama a handleChange cuando el usuario escribe
                 placeholder="Escribe o selecciona"
                 onFocus={() => setShowSuggestions3(true)} // Muestra las sugerencias cuando el input tiene el foco

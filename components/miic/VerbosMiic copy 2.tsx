@@ -1,19 +1,20 @@
 import { verbosArray } from '@/action/get-verbos-action'
 import React, { useState } from 'react'
+import { ResultadoMIIC } from './InterrogantesMiic';
 
 
-export default function VerbosMiic2() {
+export default function VerbosMiic2({ dataform }: { dataform: ResultadoMIIC }) {
     const [value2, setValue2] = useState(''); // Estado para el valor del input
-      const [showSuggestions2, setShowSuggestions2] = useState(false);
-      const handleChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const [showSuggestions2, setShowSuggestions2] = useState(false);
+    const handleChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue2(e.target.value); // Actualiza el valor del input con lo que el usuario escribe
-      };
-    
-      // Función para manejar la selección de una preposición
-      const handleSelect2 = (palabra: string) => {
+    };
+
+    // Función para manejar la selección de una preposición
+    const handleSelect2 = (palabra: string) => {
         setValue2(palabra); // Establece el valor del input a la preposición seleccionada
         setShowSuggestions2(false); // Oculta las sugerencias después de la selección
-      };
+    };
     return (
         <div className="relative">
             {/* Etiqueta del input */}
@@ -25,7 +26,7 @@ export default function VerbosMiic2() {
             <input
                 className="bg-white dark:text-black rounded-lg py-1 w-full p-2 px-5 my-2 border-1 border-gray-300 focus:border-gray-700 outline-none transition duration-500 cursor-pointer"
                 name="v3"
-                value={value2}
+                value={value2?value2:dataform.o2}
                 onChange={handleChange2} // Llama a handleChange cuando el usuario escribe
                 placeholder="Escribe o selecciona"
                 onFocus={() => setShowSuggestions2(true)} // Muestra las sugerencias cuando el input tiene el foco
