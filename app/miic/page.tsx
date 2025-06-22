@@ -115,7 +115,7 @@ export default function TextGenerator() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Form on the left */}
         <div>
-          <Card className="p-6 border-none shadow-none">
+          <Card className="p-6 border-none shadow-none h-[80vh] overflow-y-auto">
             <form className="space-y-0 flex flex-col gap-8 dark:text-black" action={dispatch} ref={ref}>
 
               <ItemsFormulaioMiic

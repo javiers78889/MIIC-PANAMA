@@ -32,7 +32,7 @@ export default function ResultadoMiic({ state }: TResult) {
 
                                 <div className="animate-fade-in">
                                     <h1 className="font-black text-red-500">1. Pregunta Principal de Investigación (P.P.I)</h1>
-                                    <p>{state["1. Pregunta Principal de Investigación (P.P.I)"]}</p>
+                                    <p>{state["1. Pregunta Principal de Investigación"]}</p>
 
                                     <h1 className="font-black text-red-500">2. Objetivo General</h1>
                                     <p>{state["2. Objetivo General"]}</p>

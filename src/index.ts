@@ -70,7 +70,7 @@ export const newDataSchema = z.object({
 
 
 export const investigacionSchema = z.object({
-        '1. Pregunta Principal de Investigación (P.P.I)': z.string(),
+        '1. Pregunta Principal de Investigación': z.string(),
         '2. Objetivo General': z.string(),
         '3. Título del Proyecto': z.string(),
         '4. Hipótesis': z.string(),
