@@ -1,21 +1,6 @@
 import { preposicionesArray } from '@/action/get-preposiciones-action'
 import React from 'react'
 
-type dat = {
-    preposicionSugerida: string;
-    ppi: string;
-    i1: string;
-    i2: string;
-    i3: string;
-    verbo: string;
-    verboOE1: string;
-    verboOE2: string;
-    verboOE3: string;
-    og: string;
-    o1: string;
-    o2: string;
-    o3: string;
-};
 
 type TPrepo = {
     value: string,
