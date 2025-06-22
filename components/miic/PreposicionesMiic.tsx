@@ -23,12 +23,11 @@ type TPrepo = {
     setShowSuggestions: React.Dispatch<React.SetStateAction<boolean>>,
     showSuggestions: boolean,
     handleSelect: (palabra: string) => void
-    dataform: dat
 
 
 }
 
-export default function PreposicionesMiic({ dataform, value, handleChange, setShowSuggestions, showSuggestions, handleSelect }: TPrepo) {
+export default function PreposicionesMiic({ value, handleChange, setShowSuggestions, showSuggestions, handleSelect }: TPrepo) {
     return (
         <div className="relative">
             {/* Etiqueta del input */}

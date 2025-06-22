@@ -212,7 +212,7 @@ export default function ItemsFormulaioMiic({
             }
 
             {/*LAS PREPOSICIONES*/}
-            <PreposicionesMiic dataform={dataform} value={value} handleChange={handleChange} setShowSuggestions={setShowSuggestions} showSuggestions={showSuggestions} handleSelect={handleSelect} />
+            <PreposicionesMiic value={value} handleChange={handleChange} setShowSuggestions={setShowSuggestions} showSuggestions={showSuggestions} handleSelect={handleSelect} />
             {/*LAS INTERROGANTES*/}
             <InterrogantesMiic value3={value3} handleChange3={handleChange3} setShowSuggestions3={setShowSuggestions3} showSuggestions3={showSuggestions3} handleSelect3={handleSelect3} />
             <InterrogantesMiic1 dataform={dataform} />
