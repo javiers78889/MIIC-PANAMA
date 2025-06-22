@@ -89,12 +89,6 @@ export default function ItemsFormulaioMiic({
             })
         }
 
-    }, [state])
-    const onSubmit = () => {
-        startTransition(() => {
-
-            dispatch()
-        })
         if (state.success[0]) {
             setDataForm({
                 preposicionSugerida: state.success[0].preposicionSugerida,
@@ -115,6 +109,12 @@ export default function ItemsFormulaioMiic({
 
         }
 
+    }, [state])
+    const onSubmit = () => {
+        startTransition(() => {
+
+            dispatch()
+        })
 
     }
     return (
