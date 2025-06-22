@@ -20,6 +20,7 @@ import { Button } from '@/components/ui/button'
 import { Brain } from 'lucide-react'
 import { SuggestAction } from '@/action/suggest-action'
 import { toast } from 'react-toastify'
+import { redirect } from 'next/navigation'
 
 
 export default function ItemsFormulaioMiic({
@@ -46,6 +47,9 @@ export default function ItemsFormulaioMiic({
     setShowSuggestions,
     showSuggestions,
     handleSelect,
+    setValue3,
+    setValue,
+    setValue2
 }: TItemForm) {
 
 
@@ -109,6 +113,13 @@ export default function ItemsFormulaioMiic({
 
         }
 
+        if (state.error) {
+            state.error.map(e => {
+                toast.error(e)
+                redirect('/auth/login')
+            })
+        }
+
     }, [state])
     const onSubmit = () => {
         startTransition(() => {
@@ -117,6 +128,17 @@ export default function ItemsFormulaioMiic({
         })
 
     }
+       useEffect(() => {
+        setValue3(dataform.ppi)
+    }, [dataform.i1])
+
+
+    useEffect(()=>{
+        setValue(dataform.preposicionSugerida)
+    },[dataform.preposicionSugerida])
+    useEffect(()=>{
+        setValue2(dataform.og)
+    },[dataform.og])
     return (
         <>
             <div className="space-y-4">
@@ -192,7 +214,7 @@ export default function ItemsFormulaioMiic({
             {/*LAS PREPOSICIONES*/}
             <PreposicionesMiic dataform={dataform} value={value} handleChange={handleChange} setShowSuggestions={setShowSuggestions} showSuggestions={showSuggestions} handleSelect={handleSelect} />
             {/*LAS INTERROGANTES*/}
-            <InterrogantesMiic dataform={dataform} value3={value3} handleChange3={handleChange3} setShowSuggestions3={setShowSuggestions3} showSuggestions3={showSuggestions3} handleSelect3={handleSelect3} />
+            <InterrogantesMiic value3={value3} handleChange3={handleChange3} setShowSuggestions3={setShowSuggestions3} showSuggestions3={showSuggestions3} handleSelect3={handleSelect3} />
             <InterrogantesMiic1 dataform={dataform} />
             <InterrogantesMiic2 dataform={dataform} />
             <InterrogantesMiic3 dataform={dataform} />

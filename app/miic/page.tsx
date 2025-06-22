@@ -157,6 +157,9 @@ export default function TextGenerator() {
                 setShowSuggestions={setShowSuggestions}
                 showSuggestions={showSuggestions}
                 handleSelect={handleSelect}
+                setValue3={setValue3}
+                setValue={setValue}
+                setValue2={setValue2}
               />
 
             </form>

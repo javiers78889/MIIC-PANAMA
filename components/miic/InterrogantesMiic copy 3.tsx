@@ -1,5 +1,5 @@
 import { interrogantesArray } from '@/action/get-interrogantes-action'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ResultadoMIIC } from './InterrogantesMiic';
 
 
@@ -15,6 +15,9 @@ export default function InterrogantesMiic2({dataform}:{dataform:ResultadoMIIC}) 
         setValue3(palabra); // Establece el valor del input a la preposición seleccionada
         setShowSuggestions3(false); // Oculta las sugerencias después de la selección
       };
+          useEffect(() => {
+              setValue3(dataform.i2)
+          }, [dataform.i2])
     
     return (
         <div className="relative">
@@ -27,7 +30,7 @@ export default function InterrogantesMiic2({dataform}:{dataform:ResultadoMIIC}) 
             <input
                 className="bg-white dark:text-black rounded-lg py-1 w-full p-2 px-5 my-2 border-1 border-gray-300 focus:border-gray-700 outline-none transition duration-500 cursor-pointer"
                 name="i2"
-                value={value3?value3:dataform.i2}
+                value={value3}
                 onChange={handleChange3} // Llama a handleChange cuando el usuario escribe
                 placeholder="Escribe o selecciona"
                 onFocus={() => setShowSuggestions3(true)} // Muestra las sugerencias cuando el input tiene el foco

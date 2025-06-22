@@ -1,6 +1,6 @@
 "use server"
 
-import { IASchema, resultadoMIICSchema, Tresults } from "@/src"
+import { ErrorSchema, IASchema, resultadoMIICSchema, Tresults } from "@/src"
 import { Envs } from "@/src/envs"
 import { GetToken } from "@/src/getToken"
 
@@ -42,6 +42,13 @@ export const SuggestAction = async (data: TData,prevState:TPrev) => {
 
     const json = await req.json()
 
+    if(!req.ok){
+        const error= ErrorSchema.parse(json)
+        return{
+            success:[],
+            error:[error.message]
+        }
+    }
     const validate = resultadoMIICSchema.safeParse(json)
 
 

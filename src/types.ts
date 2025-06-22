@@ -26,6 +26,9 @@ type TItemForm = {
     setShowSuggestions: React.Dispatch<React.SetStateAction<boolean>>;
     showSuggestions: boolean;
     handleSelect: (palabra: string) => void;
+    setValue3: React.Dispatch<React.SetStateAction<string>>;
+    setValue: React.Dispatch<React.SetStateAction<string>>;
+    setValue2: React.Dispatch<React.SetStateAction<string>>;
 
 
 }

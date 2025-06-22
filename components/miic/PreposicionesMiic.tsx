@@ -40,7 +40,7 @@ export default function PreposicionesMiic({ dataform, value, handleChange, setSh
             <input
                 className="bg-white dark:text-black rounded-lg py-1 w-full p-2 px-5 my-2 border-1 border-gray-300 focus:border-gray-700 outline-none transition duration-500 cursor-pointer"
                 name="preposicion"
-                value={value ? value : dataform.preposicionSugerida}
+                value={value}
                 onChange={handleChange} // Llama a handleChange cuando el usuario escribe
                 placeholder="Escribe o selecciona"
                 onFocus={() => setShowSuggestions(true)} // Muestra las sugerencias cuando el input tiene el foco
