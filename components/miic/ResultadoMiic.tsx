@@ -1,10 +1,11 @@
 "use client"
-import React, { useActionState } from 'react'
+import React, { useActionState, useEffect } from 'react'
 import { Card } from '../ui/card'
 import { investigacionSchemaType } from '@/src'
 import ButtonChildsave from '../widgets/Button copy'
 import SaveDataForm from './SaveDataForm/SaveDataForm'
 import { saveData } from '@/action/save-data-action'
+import { toast } from 'react-toastify'
 
 
 type TResult = {
@@ -14,6 +15,11 @@ type TResult = {
 export default function ResultadoMiic({ state }: TResult) {
 
     const [states, dispatch] = useActionState(saveData, { success: '', error: [] })
+    useEffect(() => {
+        if (states.success) {
+            toast.success(states.success)
+        }
+    }, [state])
 
     return (
         <div>
