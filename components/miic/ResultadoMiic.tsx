@@ -1,15 +1,19 @@
 "use client"
-import React from 'react'
+import React, { useActionState } from 'react'
 import { Card } from '../ui/card'
 import { investigacionSchemaType } from '@/src'
 import ButtonChildsave from '../widgets/Button copy'
+import SaveDataForm from './SaveDataForm/SaveDataForm'
+import { saveData } from '@/action/save-data-action'
 
 
 type TResult = {
-    state: investigacionSchemaType
+    readonly state: investigacionSchemaType
 }
 
 export default function ResultadoMiic({ state }: TResult) {
+
+    const [states, dispatch] = useActionState(saveData, { success: '', error: [] })
 
     return (
         <div>
@@ -65,7 +69,14 @@ export default function ResultadoMiic({ state }: TResult) {
                             </div>
                         )}
                     </div>
-                    <ButtonChildsave>Guardar Datos</ButtonChildsave>
+                    {state ? (
+                        <form action={dispatch}>
+
+                            <SaveDataForm state={state} />
+                            <ButtonChildsave>Guardar Datos</ButtonChildsave>
+                        </form>
+                    ) : ''}
+
                 </div>
             </Card>
         </div>

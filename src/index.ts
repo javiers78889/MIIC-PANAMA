@@ -84,3 +84,19 @@ export const investigacionSchema = z.object({
 });
 
 export type investigacionSchemaType = z.infer<typeof investigacionSchema>
+
+
+
+export const dataSchema = z.object({
+  ppi: z.string().min(1, { message: "La PPI es requerida" }),
+  og: z.string().min(1, { message: "El objetivo general es requerido" }),
+  tp: z.string().min(1, { message: "El título del proyecto es requerido" }),
+  hp: z.string().min(1, { message: "La hipótesis positiva es requerida" }),
+  hpn: z.string().min(1, { message: "La hipótesis negativa es requerida" }),
+  ps1: z.string().min(1, { message: "La pregunta específica 1 es requerida" }),
+  ps2: z.string().min(1, { message: "La pregunta específica 2 es requerida" }),
+  ps3: z.string().min(1, { message: "La pregunta específica 3 es requerida" }),
+  oe1: z.string().min(1, { message: "El objetivo específico 1 es requerido" }),
+  oe2: z.string().min(1, { message: "El objetivo específico 2 es requerido" }),
+  oe3: z.string().min(1, { message: "El objetivo específico 3 es requerido" }),
+});

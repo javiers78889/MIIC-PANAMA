@@ -154,6 +154,7 @@ export default function TextGenerator() {
 
         {/* Display box on the right */}
         <ResultadoMiic state={state.success[0]} />
+        
       </div>
     </div >
   )
