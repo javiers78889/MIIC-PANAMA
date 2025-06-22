@@ -9,7 +9,7 @@ type TResult = {
 export default function SaveDataForm({ state }: TResult) {
     return (
         <div hidden>
-            <Input type="text" name='ppi' defaultValue={state["1. Pregunta Principal de Investigación (P.P.I)"]} />
+            <Input type="text" name='ppi' defaultValue={state["1. Pregunta Principal de Investigación"]} />
             <Input type="text" name='og' defaultValue={state["2. Objetivo General"]} />
             <Input type="text" name='tp' defaultValue={state["3. Título del Proyecto"]} />
             <Input type="text" name='hp' defaultValue={state["4. Hipótesis"]} />
