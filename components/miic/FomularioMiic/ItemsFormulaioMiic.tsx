@@ -20,7 +20,7 @@ import { Button } from '@/components/ui/button'
 import { Brain } from 'lucide-react'
 import { SuggestAction } from '@/action/suggest-action'
 import { toast } from 'react-toastify'
-import { redirect } from 'next/navigation'
+
 
 
 export default function ItemsFormulaioMiic({
@@ -116,7 +116,7 @@ export default function ItemsFormulaioMiic({
         if (state.error) {
             state.error.map(e => {
                 toast.error(e)
-                redirect('/auth/login')
+               
             })
         }
 
