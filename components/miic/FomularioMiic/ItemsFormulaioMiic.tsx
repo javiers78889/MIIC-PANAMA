@@ -240,7 +240,7 @@ export default function ItemsFormulaioMiic({
 
 
             {/*LOS VERBOS*/}
-            <VerbosMiic dataform={dataform} value2={value2} handleChange2={handleChange2} setShowSuggestions2={setShowSuggestions2} showSuggestions2={showSuggestions2} handleSelect2={handleSelect2} />
+            <VerbosMiic  value2={value2} handleChange2={handleChange2} setShowSuggestions2={setShowSuggestions2} showSuggestions2={showSuggestions2} handleSelect2={handleSelect2} />
             <VerbosMiic1 dataform={dataform} />
             <VerbosMiic2 dataform={dataform} />
             <VerbosMiic3 dataform={dataform} />
