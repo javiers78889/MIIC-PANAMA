@@ -17,6 +17,7 @@ type Tverbos = {
 }
 
 export default function VerbosMiic({ value2, handleChange2, setShowSuggestions2, showSuggestions2, handleSelect2, dataform }: Tverbos) {
+    
     return (
         <div className="relative">
             {/* Etiqueta del input */}
@@ -28,7 +29,7 @@ export default function VerbosMiic({ value2, handleChange2, setShowSuggestions2,
             <input
                 className="bg-white dark:text-black rounded-lg py-1 w-full p-2 px-5 my-2 border-1 border-gray-300 focus:border-gray-700 outline-none transition duration-500 cursor-pointer"
                 name="verbo"
-                value={value2?value2:dataform.verbo}
+                value={value2}
                 onChange={handleChange2} // Llama a handleChange cuando el usuario escribe
                 placeholder="Escribe o selecciona"
                 onFocus={() => setShowSuggestions2(true)} // Muestra las sugerencias cuando el input tiene el foco

@@ -48,7 +48,7 @@ export default async function generateInfoAction(prevState: Tdata, formData: For
     })
 
     const json = await req.json()
-
+    console.log(json)
     if (!req.ok) {
         const error = ErrorSchema.parse(json)
         return {

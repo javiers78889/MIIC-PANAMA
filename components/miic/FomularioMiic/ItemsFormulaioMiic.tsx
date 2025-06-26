@@ -20,6 +20,8 @@ import { Button } from '@/components/ui/button'
 import { Brain } from 'lucide-react'
 import { SuggestAction } from '@/action/suggest-action'
 import { toast } from 'react-toastify'
+import Switchs from '@/components/ui/Switch'
+import RadioButton from '@/components/ui/RadioButton'
 
 
 
@@ -82,7 +84,9 @@ export default function ItemsFormulaioMiic({
             [e.target.name]: e.target.value
         }));
     };
-    const inyectar = SuggestAction.bind(null, values)
+    const [enabled, setEnabled] = useState(false)
+    const [selected, setSelected] = useState('')
+    const inyectar = SuggestAction.bind(null, { ...values, nivel: selected })
     const [state, dispatch] = useActionState(inyectar, { success: [], error: [] })
     const [isPending, startTransition] = useTransition();
 
@@ -116,29 +120,35 @@ export default function ItemsFormulaioMiic({
         if (state.error) {
             state.error.map(e => {
                 toast.error(e)
-               
+
             })
         }
 
     }, [state])
+
+    useEffect(() => {
+
+    }, [selected])
     const onSubmit = () => {
         startTransition(() => {
-
             dispatch()
+            setSelected('')
+            setEnabled(false)
         })
 
     }
-       useEffect(() => {
+    useEffect(() => {
         setValue3(dataform.ppi)
     }, [dataform.i1])
 
 
-    useEffect(()=>{
+    useEffect(() => {
         setValue(dataform.preposicionSugerida)
-    },[dataform.preposicionSugerida])
-    useEffect(()=>{
+    }, [dataform.preposicionSugerida])
+    useEffect(() => {
         setValue2(dataform.og)
-    },[dataform.og])
+    }, [dataform.og])
+
     return (
         <>
             <div className="space-y-4">
@@ -190,6 +200,8 @@ export default function ItemsFormulaioMiic({
 
             {/*Sugerir*/}
 
+            <Switchs enabled={enabled} setEnabled={setEnabled} />
+
             {
                 isPending
                     ? <Button
@@ -201,13 +213,20 @@ export default function ItemsFormulaioMiic({
                         Pensando...<Brain />
                     </Button>
                     : (
-                        <Button
-                            type="button"
-                            className="bg-purple-700 text-white hover:bg-purple-900 cursor-pointer font-bold uppercase"
-                            onClick={onSubmit}
-                        >
-                            Sugerir con IA <Brain />
-                        </Button>
+
+                        !enabled ? ('') : (
+                            <>
+                                <RadioButton selected={selected} setSelected={setSelected} />
+
+                                <Button
+                                    type="button"
+                                    className="bg-purple-700 text-white hover:bg-purple-900 cursor-pointer font-bold uppercase"
+                                    onClick={onSubmit}
+                                >
+                                    Sugerir con IA <Brain />
+                                </Button>
+                            </>
+                        )
                     )
             }
 

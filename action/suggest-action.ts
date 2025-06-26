@@ -8,15 +8,16 @@ type TData = {
     problema: string,
     causa: string,
     sujeto: string,
-    contexto: string
+    contexto: string,
+    nivel: string
 }
 
-type TPrev={
-    success: Tresults[], 
+type TPrev = {
+    success: Tresults[],
     error: string[]
 }
 
-export const SuggestAction = async (data: TData,prevState:TPrev) => {
+export const SuggestAction = async (data: TData, prevState: TPrev) => {
     const url = `${Envs.url}/generate/suggest`
     const token = await GetToken()
 
@@ -42,11 +43,11 @@ export const SuggestAction = async (data: TData,prevState:TPrev) => {
 
     const json = await req.json()
 
-    if(!req.ok){
-        const error= ErrorSchema.parse(json)
-        return{
-            success:[],
-            error:[error.message]
+    if (!req.ok) {
+        const error = ErrorSchema.parse(json)
+        return {
+            success: [],
+            error: [error.message]
         }
     }
     const validate = resultadoMIICSchema.safeParse(json)
@@ -55,14 +56,18 @@ export const SuggestAction = async (data: TData,prevState:TPrev) => {
     if (!validate.success) {
 
 
-        return { success: [], 
-            error: validate.error.errors.map(e => e.message) }
+        return {
+            success: [],
+            error: validate.error.errors.map(e => e.message)
+        }
     }
 
- 
+
     console.log(validate.data)
-    return { success: [validate.data], 
-        error: [] }
+    return {
+        success: [validate.data],
+        error: []
+    }
 
 
 }

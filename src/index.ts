@@ -125,4 +125,6 @@ export const IASchema = z.object({
         problema: z.string().nonempty({ message: 'El problema no puede ir vacío' }),
         sujeto: z.string().nonempty({ message: 'El sujeto no puede ir vacío' }),
         contexto: z.string().nonempty({ message: 'El contexto no puede ir vacío' }),
+        nivel: z.string().nonempty({ message: 'Elija un nivel de investigación' }),
+        
 })
