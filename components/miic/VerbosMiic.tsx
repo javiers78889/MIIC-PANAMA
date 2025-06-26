@@ -1,6 +1,5 @@
 import { verbosArray } from '@/action/get-verbos-action'
 import React from 'react'
-import { ResultadoMIIC } from './InterrogantesMiic'
 
 
 type Tverbos = {
@@ -9,14 +8,14 @@ type Tverbos = {
     setShowSuggestions2: React.Dispatch<React.SetStateAction<boolean>>
     showSuggestions2: boolean,
     handleSelect2: (palabra: string) => void
-    dataform: ResultadoMIIC
+  
 
 
 
 
 }
 
-export default function VerbosMiic({ value2, handleChange2, setShowSuggestions2, showSuggestions2, handleSelect2, dataform }: Tverbos) {
+export default function VerbosMiic({ value2, handleChange2, setShowSuggestions2, showSuggestions2, handleSelect2 }: Tverbos) {
     
     return (
         <div className="relative">
