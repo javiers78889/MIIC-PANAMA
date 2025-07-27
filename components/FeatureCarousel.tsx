@@ -28,7 +28,7 @@ const features = [
 
 export default function FeatureCarousel() {
   return (
-    <div className="bg-cyan-200 py-20 bg-gradient-to-b from-background to-secondary/20">
+    <div id='sobreNosotros' className="bg-cyan-200 py-20 bg-gradient-to-b from-background to-secondary/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-center mb-12 text-foreground">Sobre Nosotros</h2>
 

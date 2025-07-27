@@ -21,8 +21,7 @@ export default function NavBarDashItem() {
                 Historia
             </Link>
             <Link
-                href="#SobreNosotros"
-                target="_blank"
+                href="#sobreNosotros"
                 rel="noopener noreferrer"
                 className="text-sm font-bold leading-6 text-black hover:text-primary transition-colors hover:animate-bounce pl-1"
             >
