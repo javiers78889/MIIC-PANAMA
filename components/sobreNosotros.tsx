@@ -1,9 +1,9 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { ArrowRight, Eye, Target, Zap } from "lucide-react"
-import Logo from "./ui/Logo"
+import { Eye, Target, Zap } from "lucide-react"
+
 
 export default function SobreNosotros() {
   return (
