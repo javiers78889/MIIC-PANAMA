@@ -13,8 +13,7 @@ export default function NavBarDashItem() {
                 Formulario
             </a>
             <Link
-                href="https://www.flowersandsaints.com.au"
-                target="_blank"
+                href="#Historia"
                 rel="noopener noreferrer"
                 className="text-sm font-bold leading-6 text-black hover:text-primary transition-colors hover:animate-bounce border-r-1 px-6 py-1"
             >

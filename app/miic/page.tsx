@@ -121,7 +121,7 @@ export default function TextGenerator() {
 
   return (
     <div className="bg-amber-50 container mx-auto py-8 w-full">
-      <h1 className="mt-6 mb-14 text-4xl font-bold text-center dark:text-black">Formulación de elementos para el protocolo de tesis según la Metodología Invertida para la Investigación (MIIC)</h1>
+      <h1 className="mt-6 mb-14 text-4xl font-bold text-center dark:text-black">Formulación de elementos para el protocolo de tesis según la Metodología Invertida para la Investigación Científica (MIIC)</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Form on the left */}

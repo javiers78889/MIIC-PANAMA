@@ -122,7 +122,7 @@ export default function Timeline() {
   const [expandedEvent, setExpandedEvent] = useState<number | null>(null)
 
   return (
-    <section className="py-20 overflow-hidden">
+    <section id= "Historia" className="py-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold dark:text-white text-gray-900 sm:text-4xl">Nuestra Trayectoria</h2>

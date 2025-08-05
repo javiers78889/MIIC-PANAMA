@@ -19,7 +19,7 @@ export default function Marquee() {
                 WebkitTextStroke: "1px rgb(156 163 175)", // tailwind gray-400
               }}
             >
-              proyecto miic panamá. -
+              app miic panamá. -
             </span>
           </div>
         ))}

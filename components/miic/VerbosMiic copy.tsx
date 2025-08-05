@@ -24,7 +24,7 @@ export default function VerbosMiic1({ dataform }: { dataform: ResultadoMIIC }) {
         <div className="relative">
             {/* Etiqueta del input */}
             <label htmlFor="verbo" className="block mb-1 font-semibold">
-                ESCRIBA O SELECCIONE EL VERBO A UTILIZAR EN<span className='text-red-500'>OBJETIVO ESPECIFICO 1</span>:  <span className="text-xl font-bold text-gray-500">V</span>
+                ESCRIBA O SELECCIONE EL VERBO A UTILIZAR EN <span className='text-red-500'>OBJETIVO ESPECIFICO 1</span>:  <span className="text-xl font-bold text-gray-500">V</span>
             </label>
 
             {/* Input para seleccionar la preposición */}

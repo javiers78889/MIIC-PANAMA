@@ -23,7 +23,7 @@ export default function InterrogantesMiic3({ dataform }: { dataform: ResultadoMI
         <div className="relative">
             {/* Etiqueta del input */}
             <label htmlFor="interrogante" className="block mb-1 font-semibold ">
-                ESCRIBA O SELECCIONE LA INTERROGANTE A UTILIZAR EN<span className='text-red-500'>PREGUNTA SECUNDARIA 3</span>:  <span className="text-xl font-bold text-gray-500">I</span>
+                ESCRIBA O SELECCIONE LA INTERROGANTE A UTILIZAR EN <span className='text-red-500'>PREGUNTA SECUNDARIA 3</span>:  <span className="text-xl font-bold text-gray-500">I</span>
             </label>
 
             {/* Input para seleccionar la preposición */}

@@ -26,7 +26,7 @@ export default function Footer() {
           <div className="flex gap-2 items-center">
             <Copyright size={12} />
             <p className=" text-center text-sm leading-5 text-muted-foreground font-bold">
-              PROYECTO MIIC PANAMÁ  - {date.getFullYear()}
+              METODOLOGÍA INVERTIDA PARA LA INVESTIGACIÓN CIENTÍFICA (MIIC)  - {date.getFullYear()}
             </p>
           </div>
         </div>
