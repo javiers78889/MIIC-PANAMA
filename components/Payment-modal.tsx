@@ -44,7 +44,7 @@ export default function PayPalButton({ amount, cantidad }: { amount: number; can
             const script = document.createElement("script");
             script.id = scriptId;
             script.src =
-                "https://www.paypal.com/sdk/js?client-id=AVOKgPuQ1F4xRxWtFYcTOpMNm19RB3Y91cIES2wYIfYGjrKIlWfW0LeXBfmkdsO-JU-E3u84hoGR3ku7&currency=USD";
+                "https://www.paypal.com/sdk/js?client-id=AePjPQNC1kWVrZaw4Jb7DNFWI9etxW_3MdtDa9onn_OYrSjTPZAEARFSs3upiKMpGRlW6Dyocsy1i0Jw&currency=USD";
 
             script.async = true;
             script.onload = () => {
