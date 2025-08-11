@@ -128,3 +128,10 @@ export const IASchema = z.object({
         nivel: z.string().nonempty({ message: 'Elija un nivel de investigación' }),
         
 })
+
+
+export const userOnlineSchema = z.object({
+    name: z.string().nonempty({ message: 'El nombre no puede ir vacío' }),
+    cant_token: z.number()
+
+})

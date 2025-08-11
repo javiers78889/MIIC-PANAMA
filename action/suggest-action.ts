@@ -42,6 +42,7 @@ export const SuggestAction = async (data: TData, prevState: TPrev) => {
 
 
     const json = await req.json()
+    console.log(json)
 
     if (!req.ok) {
         const error = ErrorSchema.parse(json)

@@ -8,6 +8,13 @@ import generateInfoAction from "@/action/generate-info-action"
 import ResultadoMiic from "@/components/miic/ResultadoMiic"
 import ItemsFormulaioMiic from "@/components/miic/FomularioMiic/ItemsFormulaioMiic"
 import { toast } from "react-toastify"
+import PayPalButton from "@/components/Payment-modal"
+import * as Dialog from "@radix-ui/react-dialog";
+import { CreditCard } from "lucide-react"
+import { Input } from "@headlessui/react"
+import { set } from "zod"
+import { Envs } from "@/src/envs"
+import { userOnline } from "@/action/user-online-action"
 
 
 
@@ -118,9 +125,110 @@ export default function TextGenerator() {
     })
 
   }
+  const [open, setOpen] = React.useState(false);
+  const [canitdad, setCantidad] = useState(1)
+  const [monto, setMonto] = useState(0)
+  const tax = 0.50
+
+
+  useEffect(() => {
+
+    if (canitdad === 7) {
+      setMonto(2.00)
+    }
+    if (canitdad === 17) {
+      setMonto(5.00)
+    }
+    if (canitdad === 50) {
+      setMonto(10.00)
+    }
+
+    console.log(canitdad, monto)
+
+  }, [canitdad])
+
+
+  const [online, setOnline] = useState({ name: '', cant_token: 0 })
+  const [loaded, setLoaded] = useState(false) // para controlar render estable
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const dataOnline = await userOnline()
+        if (dataOnline?.success?.length > 0) {
+          setOnline(dataOnline.success[0])
+        } else {
+          setOnline({ name: '', cant_token: 0 }) // valor seguro
+        }
+      } catch (err) {
+        console.error("Error cargando usuario:", err)
+        setOnline({ name: '', cant_token: 0 }) // evitar undefined
+      } finally {
+        setLoaded(true)
+      }
+    }
+    fetchData()
+
+  }, [])
+
 
   return (
     <div className="bg-amber-50 container mx-auto py-8 w-full">
+      {loaded ? (
+        <h2 className="text-black font-bold text-center">
+          {online.name} tienes (<span className="font-black text-red-500">{online.cant_token}</span> Tokens)
+        </h2>
+      ) : (
+        <h2 className="text-black font-bold text-center">Cargando usuario...</h2>
+      )}
+
+      <div className="flex items-center justify-center pb-6">
+
+        <Dialog.Root open={open} onOpenChange={setOpen}>
+          <Dialog.Trigger asChild>
+            <button className="flex gap-2 bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-700 cursor-pointer font-bold">
+              Comprar Tokens con <span className="text-blue-600 font-black">Pay<span className="text-blue-400">Pal</span></span> <CreditCard />
+            </button>
+          </Dialog.Trigger>
+
+          <Dialog.Portal>
+            <Dialog.Overlay className="fixed inset-0 bg-black opacity-50" />
+
+            <Dialog.Content className="fixed top-1/2 left-1/2 max-w-md w-full p-6 bg-white rounded shadow-lg -translate-x-1/2 -translate-y-1/2">
+              <Dialog.Title className="text-lg font-semibold text-black">Pago con PayPal</Dialog.Title>
+              <div className="mt-2 text-sm text-gray-600">
+                Completa tu pago usando PayPal
+              </div>
+
+              <div className="mt-4 flex flex-col gap-4 justify-center items-center">
+                <select className="px-2 py-1 rounded-lg text-black border-2 border-black text-center" value={canitdad} onChange={(e) => setCantidad(Number(e.target.value))}>
+                  <option value={7}>7 Token - 2.00 $</option>
+                  <option value={17}>17 Tokens - 5.00 $</option>
+                  <option value={50}>50 Tokens - 10.00 $</option>
+                </select>
+
+
+                <PayPalButton amount={monto} cantidad={canitdad} />
+
+
+
+
+              </div>
+
+              <Dialog.Close asChild>
+                <button
+                  className="absolute top-2 right-2 text-gray-700 hover:text-black text-xl font-bold"
+                  aria-label="Cerrar"
+                >
+                  ×
+                </button>
+              </Dialog.Close>
+            </Dialog.Content>
+          </Dialog.Portal>
+        </Dialog.Root>
+
+      </div>
+
       <h1 className="mt-6 mb-14 text-4xl font-bold text-center dark:text-black">Formulación de elementos para el protocolo de tesis según la Metodología Invertida para la Investigación Científica (MIIC)</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -167,10 +275,10 @@ export default function TextGenerator() {
         </div>
 
         {/* Display box on the right */}
-     
-          <ResultadoMiic state={state.success[0]} isPending={isPending} />
 
-     
+        <ResultadoMiic state={state.success[0]} isPending={isPending} />
+
+
 
 
       </div>
