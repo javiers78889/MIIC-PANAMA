@@ -4,12 +4,32 @@ import React, { useEffect, useRef } from "react";
 
 declare global {
     interface Window {
-        paypal: any;
+        paypal: {
+            Buttons: (config: PayPalButtonsConfig) => { render: (element: HTMLElement) => void }
+        }
     }
 }
 
+// Define tipos básicos para PayPal Buttons
+interface PayPalButtonsConfig {
+    createOrder: (data: unknown, actions: PayPalActions) => Promise<string> | string;
+    onApprove: (data: OnApproveData, actions: PayPalActions) => Promise<void>;
+    onError?: (err: unknown) => void;
+}
 
-export default function PayPalButton({ amount, cantidad }: { amount: number, cantidad: number }) {
+interface PayPalActions {
+    order: {
+        create: (details: { purchase_units: { amount: { value: string } }[] }) => Promise<string> | string;
+        capture: () => Promise<{ payer: { name: { given_name: string } } }>;
+    };
+}
+
+interface OnApproveData {
+    orderID: string;
+    // puedes agregar más campos si quieres
+}
+
+export default function PayPalButton({ amount, cantidad }: { amount: number; cantidad: number }) {
     const paypalRef = useRef<HTMLDivElement>(null);
     const scriptLoaded = useRef(false);
 
@@ -23,7 +43,8 @@ export default function PayPalButton({ amount, cantidad }: { amount: number, can
         if (!document.getElementById(scriptId)) {
             const script = document.createElement("script");
             script.id = scriptId;
-            script.src = "https://www.paypal.com/sdk/js?client-id=AVOKgPuQ1F4xRxWtFYcTOpMNm19RB3Y91cIES2wYIfYGjrKIlWfW0LeXBfmkdsO-JU-E3u84hoGR3ku7&currency=USD";
+            script.src =
+                "https://www.paypal.com/sdk/js?client-id=AVOKgPuQ1F4xRxWtFYcTOpMNm19RB3Y91cIES2wYIfYGjrKIlWfW0LeXBfmkdsO-JU-E3u84hoGR3ku7&currency=USD";
 
             script.async = true;
             script.onload = () => {
@@ -44,19 +65,18 @@ export default function PayPalButton({ amount, cantidad }: { amount: number, can
             paypalRef.current.innerHTML = "";
 
             window.paypal.Buttons({
-                createOrder: (data: any, actions: any) => {
+                createOrder: (data, actions) => {
                     return actions.order.create({
                         purchase_units: [{ amount: { value: amount.toFixed(2) } }],
                     });
                 },
-                onApprove: async (data: any, actions: any) => {
+                onApprove: async (data, actions) => {
                     const details = await actions.order.capture();
-                    await buyTokenAction(cantidad)
-                    actions.close()
+                    await buyTokenAction(cantidad);
+                    // No existe actions.close(), PayPal cierra automáticamente el popup
                     alert("Pago completado por " + details.payer.name.given_name);
-                }
-                ,
-                onError: (err: any) => {
+                },
+                onError: (err) => {
                     console.error(err);
                     alert("Error en el pago");
                 },
@@ -66,7 +86,7 @@ export default function PayPalButton({ amount, cantidad }: { amount: number, can
         return () => {
             if (paypalRef.current) paypalRef.current.innerHTML = "";
         };
-    }, [amount]);
+    }, [amount, cantidad]);
 
     return <div ref={paypalRef} style={{ width: "100%", maxWidth: "400px" }} />;
 }

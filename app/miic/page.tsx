@@ -125,7 +125,7 @@ export default function TextGenerator() {
   const [open, setOpen] = React.useState(false);
   const [canitdad, setCantidad] = useState(1)
   const [monto, setMonto] = useState(0)
-  const tax = 0.50
+
 
 
   useEffect(() => {
