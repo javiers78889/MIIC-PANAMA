@@ -15,15 +15,13 @@ export default function Page() {
         if (state.success) {
             toast.success(state.success)
         }
-
-        if (state.error) {
+        if (state.error.length > 0) {
             state.error.forEach(e => {
-
                 toast.error(e)
             })
         }
+    }, [state.success, state.error])
 
-    }, [state])
     return (
 
         <form className="space-y-6 dark:text-black" action={dispatch}>
