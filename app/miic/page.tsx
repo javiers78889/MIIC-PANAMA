@@ -123,7 +123,7 @@ export default function TextGenerator() {
 
   }
   const [open, setOpen] = React.useState(false);
-  const [canitdad, setCantidad] = useState(1)
+  const [canitdad, setCantidad] = useState(7)
   const [monto, setMonto] = useState(0)
 
 
