@@ -16,7 +16,7 @@ export default function Posteos() {
     const [image, setImage] = useState<ImageFile | null>(null)
 
     // Mutation de React Query
-    const mutation = useMutation<any, Error, FormData>({
+    const mutation = useMutation<string, Error, FormData>({
         mutationFn: uploadPost,
         onSuccess: () => {
             if (image) URL.revokeObjectURL(image.preview)

@@ -23,7 +23,7 @@ export default function ListaDePost() {
   })
 
   ////
-  const mutation = useMutation<any, Error, DeleteParams>({
+  const mutation = useMutation<string, Error, DeleteParams>({
     mutationFn: deleteAction,
     onSuccess: (e) => {
       queryClient.invalidateQueries({ queryKey: ["posts"] })
