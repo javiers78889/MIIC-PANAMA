@@ -1,181 +1,145 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { useQuery } from "@tanstack/react-query"
+import getpostsaction from "@/action/get-posts-action"
 
-type Slide = {
-    id: string
-    cloudinaryUrl: string
-    title: string
-}
-
-const slides: Slide[] = [
+const images = [
     {
-        id: "1",
-        cloudinaryUrl: "https://res.cloudinary.com/dga0uaurm/video/upload/v1748836237/Ra%C3%BAl_Archibold_Su%C3%A1rez._U_Mayor_de_Cartagena._Colombia_1_op7wlw.mp4",
-        title: "Raúl Archibold Suárez. U Mayor de Cartagena. Colombia",
+        src: "/mountain-landscape.png",
+        alt: "Paisaje montañoso",
+        title: "Montañas Majestuosas",
     },
     {
-        id: "2",
-        cloudinaryUrl: "https://res.cloudinary.com/dga0uaurm/video/upload/v1748836245/Ra%C3%BAl_Archibold_Su%C3%A1rez._Fundaci%C3%B3n_Universitaria_del_%C3%81rea_Andina_Colombia._vvradf.mp4",
-        title: "Raúl Archibold Suárez. Fundación Universitaria del Área Andina, Colombia.",
+        src: "/placeholder-olpn1.png",
+        alt: "Atardecer en el océano",
+        title: "Atardecer Sereno",
     },
     {
-        id: "3",
-        cloudinaryUrl: "https://res.cloudinary.com/dga0uaurm/video/upload/v1748836240/Ponente_Ra%C3%BAl_Archibold_Su%C3%A1rez._Universidad_Aut%C3%B3noma_de_Madrid_Espa%C3%B1a_parnum.mp4",
-        title: "Raúl Archibold Suárez. Universidad Autónoma de Madrid, España",
+        src: "/lush-forest-sunlight.png",
+        alt: "Bosque verde",
+        title: "Bosque Encantado",
     },
     {
-        id: "4",
-        cloudinaryUrl: "https://res.cloudinary.com/dga0uaurm/video/upload/v1748836238/Semillero_de_investigaci%C3%B3n_de_la_Escuela_Biling%C3%BCe_Rep%C3%BAblica_de_Costa_Rica_1_ig59de.mp4",
-        title: "Semillero de investigación de la Escuela Bilingüe República de Costa Rica",
+        src: "/city-night-skyline.png",
+        alt: "Ciudad nocturna",
+        title: "Luces de la Ciudad",
     },
     {
-        id: "5",
-        cloudinaryUrl: "https://res.cloudinary.com/dga0uaurm/video/upload/v1748836242/Presentaci%C3%B3n___Libro_Metodolog%C3%ADa_de_la_Investigaci%C3%B3n_Cient%C3%ADfica_ISAE_Universidad_por_Thaiska_Tu%C3%B1%C3%B3n_pr2lyf.mp4",
-        title: "Presentación : Libro Metodología de la Investigación Científica, ISAE Universidad, por Thaiska Tuñón",
-    },
-    {
-        id: "6",
-        cloudinaryUrl: "https://res.cloudinary.com/dga0uaurm/video/upload/v1748836243/Semillero_de_investigaci%C3%B3n_de_la_Escuela_Biling%C3%BCe_Rep%C3%BAblica_de_Costa_Rica_huf5ay.mp4",
-        title: "Semillero de investigación de la Escuela Bilingüe República de Costa Rica",
-    },
-
-    {
-        id: "7",
-        cloudinaryUrl: "https://res.cloudinary.com/dga0uaurm/video/upload/v1748836241/Semillero_de_investigaci%C3%B3n_de_la_Escuela_Biling%C3%BCe_Rep%C3%BAblica_de_Costa_vy3e9j.mp4",
-        title: "Semillero de investigación de la Escuela Bilingüe República de Costa,",
+        src: "/golden-desert-dunes.png",
+        alt: "Dunas del desierto",
+        title: "Desierto Dorado",
     },
 ]
 
-export default function CloudinaryVideoCarousel() {
+export function CloudinaryVideoCarousel() {
     const [currentIndex, setCurrentIndex] = useState(0)
-    const videoRefs = useRef<{ [key: string]: HTMLVideoElement | null }>({})
-    const [titulo, setTitulo] = useState(true)
+    const [isAutoPlaying, setIsAutoPlaying] = useState(true)
 
 
+    const { data, isPending, error } = useQuery({
+        queryKey: ['files'],
+        queryFn: getpostsaction
+    })
 
+    // Auto-play functionality
     useEffect(() => {
-        const timer = setTimeout(() => {
+        if (!isAutoPlaying) return
 
-        }, 200)
+        const interval = setInterval(() => {
+            setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1))
+        }, 4000)
 
-        return () => clearTimeout(timer)
-    }, [currentIndex])
+        return () => clearInterval(interval)
+    }, [isAutoPlaying])
 
-    useEffect(() => {
-        const currentSlide = slides[currentIndex]
-        const videoElement = videoRefs.current[currentSlide.id]
-
-        const handleVideoEnd = () => {
-            goToNextSlide()
-        }
-
-        if (videoElement) {
-            videoElement.addEventListener("ended", handleVideoEnd)
-        }
-
-        return () => {
-            if (videoElement) {
-                videoElement.removeEventListener("ended", handleVideoEnd)
-            }
-        }
-    }, [currentIndex])
-
-    const goToNextSlide = () => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length)
+    const goToPrevious = () => {
+        setCurrentIndex(currentIndex === 0 ? images.length - 1 : currentIndex - 1)
     }
 
-    const goToPrevSlide = () => {
-        setCurrentIndex((prevIndex) => (prevIndex - 1 + slides.length) % slides.length)
+    const goToNext = () => {
+        setCurrentIndex(currentIndex === images.length - 1 ? 0 : currentIndex + 1)
     }
 
+    const goToSlide = (index: number) => {
+        setCurrentIndex(index)
+    }
+    if(data?.length === 0 ) return <div className="text-center font-black uppercase text-2xl "><h2>No hay Publicaciones</h2></div>
     return (
-        <div className="flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 lg:p-12 bg-auth bg-cover bg-no-repeat">
-
-            <div className="relative w-full max-w-3xl bg-white rounded-lg shadow-lg overflow-hidden">
-                {/* Botón anterior */}
-                <div className="absolute top-1/2 left-4 z-10 transform -translate-y-1/2">
-                    <Button
-                        variant="outline"
-                        size="icon"
-                        className="rounded-full bg-white/80 hover:bg-white"
-                        onClick={goToPrevSlide}
+        <div
+            className="relative w-full max-w-4xl mx-auto bg-card rounded-lg overflow-hidden shadow-lg"
+            onMouseEnter={() => setIsAutoPlaying(false)}
+            onMouseLeave={() => setIsAutoPlaying(true)}
+        >
+            {/* Main image container */}
+            <div className="relative h-96 overflow-hidden">
+                {data?.map((image, index) => (
+                    <div
+                        key={index}
+                        className={cn(
+                            "absolute inset-0 transition-all duration-700 ease-in-out",
+                            index === currentIndex
+                                ? "opacity-100 translate-x-0"
+                                : index < currentIndex
+                                    ? "opacity-0 -translate-x-full"
+                                    : "opacity-0 translate-x-full",
+                        )}
                     >
-                        <ChevronLeft className="h-6 w-6" />
-                        <span className="sr-only">Anterior</span>
-                    </Button>
-                </div>
-
-                {/* Botón siguiente */}
-                <div className="absolute top-1/2 right-4 z-10 transform -translate-y-1/2">
-                    <Button
-                        variant="outline"
-                        size="icon"
-                        className="rounded-full bg-white/80 hover:bg-white"
-                        onClick={goToNextSlide}
-                    >
-                        <ChevronRight className="h-6 w-6" />
-                        <span className="sr-only">Siguiente</span>
-                    </Button>
-                </div>
-
-                {/* Carrusel */}
-                <div className="relative w-full aspect-video">
-                    {slides.map((slide, index) => (
-
-                        <div key={slide.id}
-                            className={`absolute top-0 cursor-pointer  left-0 w-full h-full transition-opacity duration-500 ${index === currentIndex ? "opacity-100 z-20" : "opacity-0 z-10"}`}
-                        >
-                            <div className="w-full h-full flex flex-col relative">
-                                <div className="w-full flex-1 bg-black relative">
-                                    <video
-                                        ref={(el) => {
-                                            if (el) videoRefs.current[slide.id] = el
-                                        }}
-                                        className="w-full h-full object-contain"
-                                        src={slide.cloudinaryUrl}
-                                        muted
-                                        onClick={(event) => {
-                                            const video = event.currentTarget as HTMLVideoElement
-                                            video.play()
-                                            video.muted = !video.muted
-
-
-                                        }}
-                                        onMouseEnter={(event) => {
-                                            const video = event.currentTarget as HTMLVideoElement
-
-                                            video.play()
-                                            setTitulo(false)
-
-
-                                        }}
-                                        onMouseLeave={() => {
-                
-
-                                            setTitulo(true)
-
-
-                                        }}
-                                    />
-                                    {/* Título estilo YouTube */}
-                                    {titulo ? (
-                                        <div className="absolute hover:  bottom-0 left-0 w-full bg-black/70 text-white text-sm px-4 py-2">
-                                            {slide.title}
-                                        </div>
-                                    ) : ''}
-
-                                </div>
-                            </div>
+                        <img src={image.url || "/placeholder.svg"} alt={image.name} className="w-full h-full object-cover" />
+                        {/* Overlay with title */}
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+                            <h3 className="text-white text-xl font-semibold">{image.name}</h3>
                         </div>
+                    </div>
+                ))}
+            </div>
 
+            {/* Navigation arrows */}
+            <Button
+                variant="ghost"
+                size="icon"
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white border-0 backdrop-blur-sm"
+                onClick={goToPrevious}
+            >
+                <ChevronLeft className="h-6 w-6" />
+            </Button>
 
+            <Button
+                variant="ghost"
+                size="icon"
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white border-0 backdrop-blur-sm"
+                onClick={goToNext}
+            >
+                <ChevronRight className="h-6 w-6" />
+            </Button>
 
+            {/* Dots indicator */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+                {images.map((_, index) => (
+                    <button
+                        key={index}
+                        className={cn(
+                            "w-3 h-3 rounded-full transition-all duration-300 ease-in-out",
+                            index === currentIndex ? "bg-white scale-110" : "bg-white/50 hover:bg-white/75",
+                        )}
+                        onClick={() => goToSlide(index)}
+                    />
+                ))}
+            </div>
 
-                    ))}
-                </div>
+            {/* Auto-play indicator */}
+            <div className="absolute top-4 right-4">
+                <Button
+                    variant="ghost"
+                    size="sm"
+                    className="bg-black/20 hover:bg-black/40 text-white text-xs backdrop-blur-sm"
+                    onClick={() => setIsAutoPlaying(!isAutoPlaying)}
+                >
+                    {isAutoPlaying ? "Pausar" : "Reproducir"}
+                </Button>
             </div>
         </div>
     )

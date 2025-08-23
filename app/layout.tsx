@@ -1,13 +1,13 @@
+
 import "./globals.css"
 import { Inter } from "next/font/google"
-
-
 import type React from "react"
 import { ToastContainer } from 'react-toastify'
 import Footer from "@/components/Footer"
 import { ThemeProvider } from "next-themes"
 import Header from "@/components/Header"
 import Head from "next/head"
+import { Providers } from "@/components/Provider/Provider"
 
 
 
@@ -22,7 +22,6 @@ export const metadata = {
 type TChild = {
   readonly children: React.ReactNode
 }
-
 export default function RootLayout({
   children,
 }: TChild) {
@@ -36,12 +35,16 @@ export default function RootLayout({
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <body className={`${inter.className} min-h-screen bg-background text-foreground`}>
+
+
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <ToastContainer />
           <div className=" sticky top-0 z-50 border-b-1 ">
             <Header />
           </div>
-          <main className="min-h-screen">{children}</main>
+          <Providers>
+            <main className="min-h-screen">{children}</main>
+          </Providers>
           <Footer />
         </ThemeProvider>
       </body>

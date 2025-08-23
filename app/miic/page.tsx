@@ -12,6 +12,7 @@ import PayPalButton from "@/components/Payment-modal"
 import * as Dialog from "@radix-ui/react-dialog";
 import { CreditCard } from "lucide-react"
 import { userOnline } from "@/action/user-online-action"
+import Link from "next/link"
 
 
 
@@ -145,7 +146,7 @@ export default function TextGenerator() {
   }, [canitdad])
 
 
-  const [online, setOnline] = useState({ name: '', cant_token: 0 })
+  const [online, setOnline] = useState({ name: '', cant_token: 0, role: '' })
   const [loaded, setLoaded] = useState(false) // para controlar render estable
 
   useEffect(() => {
@@ -155,11 +156,11 @@ export default function TextGenerator() {
         if (dataOnline?.success?.length > 0) {
           setOnline(dataOnline.success[0])
         } else {
-          setOnline({ name: '', cant_token: 0 }) // valor seguro
+          setOnline({ name: '', cant_token: 0, role: '' }) // valor seguro
         }
       } catch (err) {
         console.error("Error cargando usuario:", err)
-        setOnline({ name: '', cant_token: 0 }) // evitar undefined
+        setOnline({ name: '', cant_token: 0, role: '' }) // evitar undefined
       } finally {
         setLoaded(true)
       }
@@ -172,9 +173,16 @@ export default function TextGenerator() {
   return (
     <div className="bg-amber-50 container mx-auto py-8 w-full">
       {loaded ? (
-        <h2 className="text-black font-bold text-center">
-          {online.name} tienes (<span className="font-black text-red-500">{online.cant_token}</span> Tokens)
-        </h2>
+        <div className="flex flex-col justify-center items-center mb-6 gap-4">
+          {online.role === 'admin' && (
+            <Link href={'/miic/new_post'} className="rounded-lg bg-green-500 hover:bg-green-800 px-4 py-4 ">Crear Un POST</Link>
+          )}
+          <h2 className="text-black font-bold text-center">
+            {online.name} tienes (<span className="font-black text-red-500">{online.cant_token}</span> Tokens)
+          </h2>
+
+
+        </div>
       ) : (
         <h2 className="text-black font-bold text-center">Cargando usuario...</h2>
       )}

@@ -1,4 +1,5 @@
 
+import { url } from 'inspector';
 import * as z from 'zod'
 
 
@@ -126,12 +127,30 @@ export const IASchema = z.object({
         sujeto: z.string().nonempty({ message: 'El sujeto no puede ir vacío' }),
         contexto: z.string().nonempty({ message: 'El contexto no puede ir vacío' }),
         nivel: z.string().nonempty({ message: 'Elija un nivel de investigación' }),
-        
+
 })
 
 
 export const userOnlineSchema = z.object({
-    name: z.string().nonempty({ message: 'El nombre no puede ir vacío' }),
-    cant_token: z.number()
+        name: z.string().nonempty({ message: 'El nombre no puede ir vacío' }),
+        cant_token: z.number(),
+        role: z.string().nonempty({ message: 'El rol no puede ir vacío' })
 
 })
+
+export const PostShema = z.object({
+        name: z.string().nonempty({ message: 'El nombre no puede ir vacío' }),
+        url: z.string().url({ message: 'Debe ser ura URL valida' })
+})
+
+export const UserPostSchema = z.object({
+        file: z.instanceof(File).refine((file) => file.size > 0, { message: 'Ingrese un archivo' }).refine((file) => ["image/png", "image/jpeg", "image/jpg"].includes(file.type), { message: "Solo se permiten imagenes .png y .jpg" }),
+        name: z.string().nonempty({ message: 'El archivo debe tener un nombre' })
+})
+
+
+const PostIdSchema = PostShema.extend({
+        id: z.number()
+})
+
+export const PostArraySchema = z.array(PostIdSchema)

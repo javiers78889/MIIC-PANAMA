@@ -1,0 +1,37 @@
+name: MIIC Backend Deployment
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Hacer checkout del repositorio
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2️⃣ Configurar Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+
+      # 3️⃣ Deploy al VPS vía SSH
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v0.1.9
+        with:
+          host: ${{ secrets.SERVER_HOST }}       # IP de tu VPS
+          username: ${{ secrets.SERVER_USER }}   # Usuario SSH
+          key: ${{ secrets.SERVER_SSH_KEY }}     # Tu llave privada SSH
+          port: 22
+          script: |
+            cd ~/MIIC-PANAMA
+            git pull origin main
+            npm install
+            npm run build
+            pm2 restart all
