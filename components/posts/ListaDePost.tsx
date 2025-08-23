@@ -41,7 +41,7 @@ export default function ListaDePost() {
         <p className="text-muted-foreground">Gestiona tus eventos con la opción de eliminar cada uno</p>
       </div>
 
-      {data?.length! === 0 ? (
+      { data && data.length! === 0 ? (
         <Card>
           <CardContent className="py-8 text-center">
             <p className="text-muted-foreground">No hay posts disponibles</p>
