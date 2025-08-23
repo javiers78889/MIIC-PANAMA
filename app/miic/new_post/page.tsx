@@ -6,13 +6,6 @@ import Posteos from "@/components/posts/Posteos"
 
 
 
-interface ImageFile {
-    id: string
-    file: File
-    name: string
-    preview: string
-}
-
 export default function ImageUploadForm() {
    
     return (
