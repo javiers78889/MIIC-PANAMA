@@ -16,6 +16,13 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata = {
   title: "MIIC-PANAMÁ",
   description: "PROYECTO MIIC-PANAMÁ",
+   icons: {
+    icon: [
+      { url: '/miic.png', sizes: '32x32', type: 'image/png' },
+      { url: '/miic.png', sizes: '16x16', type: 'image/png' }
+    ],
+    apple: '/miic.png'
+  }
 
 }
 
@@ -29,9 +36,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <Head>
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-        <link rel="icon" href="/favicon-32x32.png" sizes="32x32" />
-        <link rel="icon" href="/favicon-16x16.png" sizes="16x16" />
+       
+        <link
+          rel="icon"
+          href="/icon?<generated>"
+          type="image/<generated>"
+          sizes="<generated>"
+        />
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <body className={`${inter.className} min-h-screen bg-background text-foreground`}>
